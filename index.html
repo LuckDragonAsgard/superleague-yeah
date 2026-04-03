@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Superleague Yeah - Fantasy AFL 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Superleague Yeah - Fantasy AFL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,136 +12,78 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --bg-dark: #0f0f1e;
-            --bg-card: #1a1a2e;
-            --bg-hover: #252540;
-            --text-primary: #ffffff;
-            --text-secondary: #b0b0c0;
-            --accent-cyan: #00d4ff;
-            --accent-light: #00e5ff;
-            --border-color: #2a2a3e;
-            --success: #4ade80;
-            --warning: #facc15;
-            --error: #ef4444;
-        }
-
-        html, body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-primary);
-            height: 100%;
-            width: 100%;
-            overflow: hidden;
-        }
-
         body {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .app-container {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .app-content {
-            flex: 1;
-            overflow-y: auto;
+            background-color: #0f0f1e;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
             overflow-x: hidden;
             padding-bottom: 80px;
         }
 
-        /* NAVIGATION */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 70px;
-            background: linear-gradient(to top, var(--bg-dark) 70%, transparent);
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-end;
-            padding: 0 0 10px 0;
-            z-index: 1000;
+        a {
+            color: #00d4ff;
+            text-decoration: none;
         }
 
-        .nav-item {
+        /* Header */
+        header {
+            background-color: #1a1a2e;
+            padding: 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            gap: 4px;
-            padding: 8px 12px;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00d4ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .search-btn {
+            background: none;
+            border: none;
+            color: #00d4ff;
+            font-size: 1.5rem;
             cursor: pointer;
-            color: var(--text-secondary);
+            padding: 0.5rem;
             transition: all 0.3s ease;
-            flex: 1;
-            font-size: 11px;
-            text-transform: uppercase;
-            font-weight: 600;
         }
 
-        .nav-item.active {
-            color: var(--accent-cyan);
+        .search-btn:hover {
+            transform: scale(1.1);
         }
 
-        .nav-item svg {
-            width: 24px;
-            height: 24px;
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;
         }
 
-        /* HEADER */
-        .header {
-            padding: 20px;
-            background: linear-gradient(135deg, var(--bg-card) 0%, transparent 100%);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .header-title {
-            font-size: 28px;
-            font-weight: 800;
-            letter-spacing: -1px;
-            margin-bottom: 4px;
-        }
-
-        .header-subtitle {
-            font-size: 12px;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* CARDS */
-        .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 16px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .card:hover {
-            border-color: var(--accent-cyan);
-            box-shadow: 0 8px 24px rgba(0, 212, 255, 0.1);
-        }
-
-        /* TAB CONTENT */
-        .tab-content {
+        .container {
             display: none;
-            animation: fadeIn 0.3s ease;
+            animation: slideIn 0.4s ease;
         }
 
-        .tab-content.active {
+        .container.active {
             display: block;
         }
 
-        @keyframes fadeIn {
+        @keyframes slideIn {
             from {
                 opacity: 0;
                 transform: translateY(10px);
@@ -152,1256 +94,1945 @@
             }
         }
 
-        /* HOME TAB */
-        .home-content {
-            padding: 20px;
-        }
-
-        .stats-banner {
-            background: linear-gradient(135deg, var(--accent-cyan) 0%, #0099cc 100%);
-            color: #000;
-            padding: 20px;
+        /* Cards */
+        .card {
+            background-color: #1a1a2e;
+            border: 1px solid rgba(0, 212, 255, 0.1);
             border-radius: 12px;
-            margin-bottom: 20px;
-            font-weight: 600;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .stat-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            padding: 16px;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--accent-cyan);
-            margin-bottom: 4px;
-        }
-
-        .stat-label {
-            font-size: 11px;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .mini-ladder {
-            margin-bottom: 20px;
-        }
-
-        .mini-ladder-title {
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-secondary);
-            margin-bottom: 12px;
-        }
-
-        .ladder-row {
-            display: flex;
-            align-items: center;
-            padding: 12px;
-            background: var(--bg-card);
-            border-bottom: 1px solid var(--border-color);
-            gap: 12px;
-        }
-
-        .ladder-row:last-child {
-            border-bottom: none;
-        }
-
-        .ladder-rank {
-            font-weight: 700;
-            color: var(--accent-cyan);
-            min-width: 24px;
-            font-size: 14px;
-        }
-
-        .ladder-team-info {
-            flex: 1;
-        }
-
-        .ladder-team-name {
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 2px;
-        }
-
-        .ladder-coach {
-            font-size: 11px;
-            color: var(--text-secondary);
-        }
-
-        .ladder-pts {
-            color: var(--accent-cyan);
-            font-weight: 700;
-            font-size: 14px;
-            min-width: 30px;
-            text-align: right;
-        }
-
-        .live-ticker {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 16px;
-            margin-top: 20px;
-        }
-
-        .ticker-title {
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-secondary);
-            margin-bottom: 12px;
-        }
-
-        .match-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border-color);
-            font-size: 12px;
-        }
-
-        .match-item:last-child {
-            border-bottom: none;
-        }
-
-        .match-team {
-            flex: 1;
-        }
-
-        .match-score {
-            color: var(--accent-cyan);
-            font-weight: 700;
-            font-size: 13px;
-            padding: 0 12px;
-            min-width: 40px;
-            text-align: center;
-        }
-
-        .match-vs {
-            color: var(--text-secondary);
-            margin: 0 8px;
-        }
-
-        /* LISTS TAB */
-        .lists-content {
-            padding: 20px;
-        }
-
-        .coach-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 12px;
-            cursor: pointer;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
             transition: all 0.3s ease;
         }
 
-        .coach-card:hover {
-            border-color: var(--accent-cyan);
+        .card:hover {
+            border-color: rgba(0, 212, 255, 0.3);
             box-shadow: 0 8px 24px rgba(0, 212, 255, 0.1);
+            transform: translateY(-2px);
         }
 
-        .coach-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #00d4ff;
         }
 
-        .coach-info {
-            flex: 1;
+        /* Home Page */
+        .hero {
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #b0b0c0;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-guide-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-guide-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #00d4ff;
+        }
+
+        .form-guide-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .form-guide-item {
+            background-color: #1a1a2e;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-guide-item:hover {
+            border-color: rgba(0, 212, 255, 0.3);
+            transform: translateY(-2px);
         }
 
         .coach-name {
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .coach-team {
-            font-size: 12px;
-            color: var(--text-secondary);
-        }
-
-        .expand-icon {
-            width: 24px;
-            height: 24px;
-            transition: transform 0.3s ease;
-            color: var(--accent-cyan);
-        }
-
-        .coach-card.expanded .expand-icon {
-            transform: rotate(180deg);
-        }
-
-        .roster-list {
-            display: none;
-            margin-top: 12px;
-            padding-top: 12px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .coach-card.expanded .roster-list {
-            display: block;
-            animation: slideDown 0.3s ease;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .roster-player {
-            font-size: 12px;
-            padding: 8px 0;
-            color: var(--text-secondary);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .roster-player:last-child {
-            border-bottom: none;
-        }
-
-        /* FIXTURE TAB */
-        .fixture-content {
-            padding: 20px;
-        }
-
-        .round-selector {
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            margin-bottom: 20px;
-            padding-bottom: 12px;
-            scroll-behavior: smooth;
-        }
-
-        .round-pill {
-            padding: 8px 16px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 12px;
             font-weight: 600;
-            white-space: nowrap;
-            transition: all 0.3s ease;
-            color: var(--text-secondary);
-        }
-
-        .round-pill:hover {
-            border-color: var(--accent-cyan);
-        }
-
-        .round-pill.active {
-            background: var(--accent-cyan);
-            color: #000;
-            border-color: var(--accent-cyan);
-        }
-
-        .matches-container {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .match-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 16px;
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            gap: 16px;
-            align-items: center;
-        }
-
-        .match-side {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .team-color-dot {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-
-        .team-details {
-            flex: 1;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
         }
 
         .team-name {
-            font-size: 13px;
+            color: #b0b0c0;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-results {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .result {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
             font-weight: 600;
-            margin-bottom: 2px;
         }
 
-        .coach-name-small {
-            font-size: 11px;
-            color: var(--text-secondary);
+        .result.win {
+            background-color: #00ff88;
+            color: #0f0f1e;
         }
 
-        .match-center {
-            text-align: center;
+        .result.loss {
+            background-color: #ff6b6b;
+            color: #ffffff;
         }
 
-        .match-score-large {
-            font-size: 16px;
-            font-weight: 800;
-            color: var(--accent-cyan);
-            margin-bottom: 4px;
+        .tip-box {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 255, 136, 0.1));
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            font-style: italic;
+            color: #00d4ff;
         }
 
-        .match-status {
-            font-size: 10px;
-            color: var(--text-secondary);
+        /* Injury Summary Bar */
+        .injury-summary {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .injury-badge {
+            background-color: #1a1a2e;
+            border: 1px solid;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+        }
+
+        .injury-badge.season {
+            border-color: #ff6b6b;
+            color: #ff6b6b;
+        }
+
+        .injury-badge.longterm {
+            border-color: #ffa500;
+            color: #ffa500;
+        }
+
+        .injury-badge.shortterm {
+            border-color: #00ff88;
+            color: #00ff88;
+        }
+
+        .injury-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        /* Lists Tab */
+        .search-bar {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            background-color: #1a1a2e;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 12px rgba(0, 212, 255, 0.2);
+        }
+
+        .coaches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .coach-card {
+            background-color: #1a1a2e;
+            border: 2px solid;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .coach-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 212, 255, 0.15);
+        }
+
+        .coach-rank {
+            display: inline-block;
+            background-color: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .coach-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .team-tagline {
+            color: #b0b0c0;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .coach-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .stat-item {
+            padding: 0.5rem;
+            background-color: rgba(0, 212, 255, 0.05);
+            border-radius: 6px;
+        }
+
+        .stat-label {
+            color: #b0b0c0;
+            font-size: 0.8rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-value {
+            color: #00d4ff;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .players-list {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
+        .players-list-title {
+            font-size: 0.85rem;
+            color: #b0b0c0;
+            margin-bottom: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        .match-status.winner {
-            color: var(--success);
+        .player-item {
+            font-size: 0.85rem;
+            padding: 0.25rem 0;
+            color: #e0e0e0;
         }
 
-        .match-status.live {
-            color: var(--error);
+        .afl-team {
+            color: #b0b0c0;
+            font-size: 0.75rem;
+        }
+
+        /* Ladder Tab */
+        .ladder-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .ladder-table thead {
+            background-color: rgba(0, 212, 255, 0.1);
+        }
+
+        .ladder-table th {
+            padding: 1rem;
+            text-align: left;
             font-weight: 600;
+            color: #00d4ff;
+            border-bottom: 2px solid rgba(0, 212, 255, 0.2);
+            font-size: 0.9rem;
+        }
+
+        .ladder-table td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
+        .ladder-table tr:hover {
+            background-color: rgba(0, 212, 255, 0.05);
+        }
+
+        .rank-badge {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            background-color: rgba(0, 212, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #00d4ff;
+            font-size: 0.9rem;
+        }
+
+        .coach-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .coach-info-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .coach-name-ladder {
+            font-weight: 600;
+        }
+
+        .team-name-ladder {
+            color: #b0b0c0;
+            font-size: 0.85rem;
+        }
+
+        .form-guide-dots {
+            display: flex;
+            gap: 0.4rem;
+            align-items: center;
+        }
+
+        .form-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+        }
+
+        .form-dot.w {
+            background-color: #00ff88;
+        }
+
+        .form-dot.l {
+            background-color: #ff6b6b;
+        }
+
+        /* Fixtures Tab */
+        .round-section {
+            margin-bottom: 2rem;
+        }
+
+        .round-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #00d4ff;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .matches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .match-card {
+            background-color: #1a1a2e;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .match-card:hover {
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 8px 24px rgba(0, 212, 255, 0.1);
+        }
+
+        .match-team {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            font-weight: 500;
+        }
+
+        .match-team:first-child {
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+            margin-bottom: 0.75rem;
+            padding-bottom: 1rem;
+        }
+
+        .team-name-match {
+            flex: 1;
+        }
+
+        .score {
+            font-weight: 700;
+            color: #00d4ff;
+            font-size: 1.1rem;
+            text-align: right;
+            width: 60px;
+        }
+
+        .match-status {
+            text-align: center;
+            padding: 0.5rem;
+            background-color: rgba(0, 212, 255, 0.1);
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #00d4ff;
+            margin-top: 0.75rem;
+        }
+
+        .live-badge {
+            display: inline-block;
+            background-color: #ff6b6b;
+            color: #ffffff;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
             animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
         }
 
-        /* TEAM TAB */
-        .team-content {
-            padding: 20px;
+        /* Draft Board Tab */
+        .draft-board-container {
+            overflow-x: auto;
         }
 
-        .coach-selector {
-            margin-bottom: 20px;
+        .draft-board {
+            display: grid;
+            grid-template-columns: 120px repeat(5, 1fr);
+            gap: 1px;
+            background-color: rgba(0, 212, 255, 0.1);
+            padding: 1px;
+            min-width: 100%;
         }
 
-        .selector-label {
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        select {
-            width: 100%;
-            padding: 12px;
-            background: var(--bg-card);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-family: 'Inter', sans-serif;
-            font-size: 13px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        select:focus {
-            outline: none;
-            border-color: var(--accent-cyan);
-            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
-        }
-
-        select option {
-            background: var(--bg-card);
-            color: var(--text-primary);
-        }
-
-        .team-stats {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 20px;
+        .draft-cell {
+            background-color: #1a1a2e;
+            padding: 1rem;
             text-align: center;
-        }
-
-        .team-stat-value {
-            font-size: 32px;
-            font-weight: 800;
-            color: var(--accent-cyan);
-            margin-bottom: 4px;
-        }
-
-        .team-stat-label {
-            font-size: 11px;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .players-list {
+            min-height: 100px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
-        }
-
-        .player-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            padding: 12px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            font-size: 0.85rem;
         }
 
-        .player-name {
-            font-size: 13px;
+        .draft-header {
+            background-color: rgba(0, 212, 255, 0.15);
+            font-weight: 700;
+            color: #00d4ff;
+        }
+
+        .draft-coach-name {
+            background-color: #1a1a2e;
             font-weight: 600;
-            margin-bottom: 2px;
+            padding: 1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        .player-afl-team {
-            font-size: 11px;
-            color: var(--text-secondary);
+        .draft-pick {
+            padding: 0.75rem;
+            border-radius: 6px;
+            font-weight: 500;
+            word-wrap: break-word;
+            word-break: break-word;
+            font-size: 0.8rem;
+            color: #0f0f1e;
         }
 
-        /* LADDER TAB */
-        .ladder-content {
-            padding: 20px;
+        .draft-pick.r1 {
+            background-color: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
         }
 
-        .ladder-tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 16px;
+        .draft-pick.r2 {
+            background-color: rgba(0, 212, 255, 0.25);
         }
 
-        .ladder-tab {
-            padding: 8px 16px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
+        .draft-pick.r3 {
+            background-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .draft-pick.r4 {
+            background-color: rgba(0, 212, 255, 0.35);
+        }
+
+        .draft-pick.r5 {
+            background-color: rgba(0, 212, 255, 0.4);
+        }
+
+        .draft-note {
+            background-color: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.2);
             border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            color: #b0b0c0;
+            font-style: italic;
+        }
+
+        /* Team Tab */
+        .team-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .team-btn {
+            background-color: #1a1a2e;
+            border: 2px solid;
+            border-radius: 8px;
+            padding: 1rem;
             cursor: pointer;
-            font-size: 12px;
-            font-weight: 600;
             transition: all 0.3s ease;
-            color: var(--text-secondary);
-        }
-
-        .ladder-tab.active {
-            background: var(--accent-cyan);
-            color: #000;
-            border-color: var(--accent-cyan);
-        }
-
-        .ladder-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .ladder-header {
-            background: var(--bg-card);
-            border-bottom: 2px solid var(--border-color);
-        }
-
-        .ladder-header th {
-            padding: 12px;
-            text-align: left;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-secondary);
-        }
-
-        .ladder-header th:nth-child(4) {
-            text-align: right;
-        }
-
-        .ladder-body tr {
-            border-bottom: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .ladder-body tr:hover {
-            background: var(--bg-hover);
-        }
-
-        .ladder-body tr.finals-zone td {
-            background: rgba(0, 212, 255, 0.03);
-        }
-
-        .ladder-body td {
-            padding: 12px;
-            font-size: 12px;
-        }
-
-        .ladder-body td:first-child {
-            color: var(--accent-cyan);
-            font-weight: 700;
-            width: 30px;
-        }
-
-        .ladder-body td:nth-child(2) {
             font-weight: 600;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
         }
 
-        .ladder-body td:nth-child(4) {
-            color: var(--accent-cyan);
-            font-weight: 700;
-            text-align: right;
+        .team-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
         }
 
-        .ladder-body td:nth-child(5),
-        .ladder-body td:nth-child(6) {
-            text-align: right;
-            color: var(--text-secondary);
+        .team-btn.active {
+            box-shadow: 0 0 20px currentColor;
         }
 
-        .ladder-extended {
+        .team-detail {
             display: none;
         }
 
-        .ladder-extended.active {
-            display: table-cell;
+        .team-detail.active {
+            display: block;
+            animation: slideIn 0.3s ease;
         }
 
-        /* INJURIES TAB */
-        .injuries-content {
-            padding: 20px;
-        }
-
-        .injuries-header {
+        .team-header {
             display: flex;
-            gap: 12px;
-            margin-bottom: 16px;
             align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
         }
 
-        .injury-filter {
-            flex: 1;
+        .team-color-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            border: 2px solid rgba(0, 212, 255, 0.3);
         }
 
-        .injury-count {
-            background: var(--accent-cyan);
-            color: #000;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
-            white-space: nowrap;
+        .team-header-text h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
         }
 
-        .injury-group {
-            margin-bottom: 20px;
+        .team-record {
+            color: #b0b0c0;
+            font-size: 0.95rem;
         }
 
-        .injury-group-title {
-            font-size: 12px;
-            font-weight: 700;
+        .team-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background-color: #1a1a2e;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-card-label {
+            color: #b0b0c0;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--accent-cyan);
-            margin-bottom: 12px;
-            padding-left: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-card-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #00d4ff;
+        }
+
+        .roster-section h3 {
+            font-size: 1.25rem;
+            color: #00d4ff;
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+
+        .roster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .player-card {
+            background-color: #1a1a2e;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .player-card:hover {
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 212, 255, 0.1);
+        }
+
+        .player-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .player-afl-team {
+            color: #b0b0c0;
+            font-size: 0.85rem;
+        }
+
+        .injury-section {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0, 212, 255, 0.1);
         }
 
         .injury-item {
-            background: var(--bg-card);
+            background-color: #1a1a2e;
             border-left: 4px solid;
-            padding: 12px;
-            margin-bottom: 8px;
             border-radius: 4px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
         }
 
         .injury-item.season {
-            border-left-color: var(--error);
+            border-left-color: #ff6b6b;
         }
 
-        .injury-item.long {
-            border-left-color: #f97316;
+        .injury-item.longterm {
+            border-left-color: #ffa500;
         }
 
-        .injury-item.medium {
-            border-left-color: var(--warning);
+        .injury-item.shortterm {
+            border-left-color: #00ff88;
         }
 
-        .injury-item.short {
-            border-left-color: var(--success);
+        .injury-player {
+            font-weight: 600;
+            color: #ffffff;
         }
 
-        .injury-details {
+        .injury-status {
+            color: #b0b0c0;
+            font-size: 0.85rem;
+        }
+
+        /* Injuries Tab */
+        .injury-filter {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: #1a1a2e;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            border-color: #00d4ff;
+            background-color: rgba(0, 212, 255, 0.1);
+        }
+
+        .team-injury-section {
+            margin-bottom: 2rem;
+        }
+
+        .team-injury-header {
+            background-color: rgba(0, 212, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #00d4ff;
+        }
+
+        .team-injury-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #00d4ff;
+            margin-bottom: 0.25rem;
+        }
+
+        .injury-count {
+            color: #b0b0c0;
+            font-size: 0.9rem;
+        }
+
+        /* Bottom Navigation */
+        nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #1a1a2e;
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0.5rem 0;
+            z-index: 50;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.25rem;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #b0b0c0;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border-radius: 8px;
+            min-width: 60px;
+        }
+
+        .nav-item:hover {
+            color: #00d4ff;
+            background-color: rgba(0, 212, 255, 0.1);
+        }
+
+        .nav-item.active {
+            color: #00d4ff;
+            background-color: rgba(0, 212, 255, 0.15);
+        }
+
+        .nav-icon {
+            font-size: 1.5rem;
+        }
+
+        .floating-search {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #00d4ff, #00ff88);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #0f0f1e;
+            box-shadow: 0 8px 24px rgba(0, 212, 255, 0.3);
+            transition: all 0.3s ease;
+            z-index: 40;
+        }
+
+        .floating-search:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 32px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Search Overlay */
+        .search-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(15, 15, 30, 0.95);
+            z-index: 200;
+            padding: 1rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .search-overlay.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .search-overlay-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-top: 1rem;
+        }
+
+        .search-overlay-close {
+            background: none;
+            border: none;
+            color: #00d4ff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .search-overlay-input {
+            width: 100%;
+            background-color: #1a1a2e;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-overlay-input:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
+        }
+
+        .search-results {
             flex: 1;
+            overflow-y: auto;
         }
 
-        .injury-name {
-            font-size: 12px;
+        .search-result-item {
+            background-color: #1a1a2e;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-result-item:hover {
+            border-color: rgba(0, 212, 255, 0.3);
+            transform: translateX(4px);
+        }
+
+        .result-player-name {
+            font-weight: 700;
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .result-afl-team {
+            color: #b0b0c0;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-fantasy-coach {
+            background-color: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            display: inline-block;
             font-weight: 600;
-            margin-bottom: 2px;
+            font-size: 0.85rem;
         }
 
-        .injury-type {
-            font-size: 11px;
-            color: var(--text-secondary);
+        .no-results {
+            text-align: center;
+            color: #b0b0c0;
+            padding: 2rem;
         }
 
-        .injury-return {
-            font-size: 11px;
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1a1a2e;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            color: #00d4ff;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
             font-weight: 600;
-            text-align: right;
-            padding-left: 12px;
+            z-index: 150;
+            animation: slideUp 0.3s ease, slideDown 0.3s ease 2.7s;
+            pointer-events: none;
         }
 
-        /* SCROLLBAR */
-        .app-content::-webkit-scrollbar {
-            width: 6px;
+        @keyframes slideUp {
+            from {
+                transform: translateX(-50%) translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
         }
 
-        .app-content::-webkit-scrollbar-track {
-            background: var(--bg-dark);
+        @keyframes slideDown {
+            from {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(-50%) translateY(20px);
+                opacity: 0;
+            }
         }
 
-        .app-content::-webkit-scrollbar-thumb {
-            background: var(--border-color);
-            border-radius: 3px;
-        }
-
-        .app-content::-webkit-scrollbar-thumb:hover {
-            background: var(--text-secondary);
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 600px) {
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
+        /* Responsive */
+        @media (max-width: 768px) {
+            main {
+                padding: 1rem;
             }
 
-            .match-card {
+            h1 {
+                font-size: 1.4rem;
+            }
+
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+
+            .form-guide-items {
                 grid-template-columns: 1fr;
-                gap: 12px;
             }
 
-            .match-side {
-                justify-content: space-between;
+            .coaches-grid {
+                grid-template-columns: 1fr;
             }
 
-            .ladder-body td:nth-child(5),
-            .ladder-body td:nth-child(6),
-            .ladder-body td:nth-child(7),
-            .ladder-body td:nth-child(8) {
-                font-size: 10px;
+            .team-selector {
+                grid-template-columns: 1fr;
+            }
+
+            .matches-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .draft-board {
+                grid-template-columns: 80px repeat(3, 1fr);
+            }
+
+            .draft-cell {
+                padding: 0.75rem;
+                min-height: 80px;
+                font-size: 0.75rem;
+            }
+
+            .ladder-table {
+                font-size: 0.85rem;
+            }
+
+            .ladder-table th, .ladder-table td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .nav-item {
+                min-width: 50px;
+                padding: 0.5rem 0.75rem;
+            }
+
+            .nav-icon {
+                font-size: 1.25rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 14px;
+            }
+
+            main {
+                padding: 0.75rem;
+            }
+
+            h1 {
+                font-size: 1.2rem;
+            }
+
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+
+            .card {
+                padding: 1rem;
+            }
+
+            .draft-board {
+                grid-template-columns: 60px repeat(2, 1fr);
+            }
+
+            .coach-stats {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="app-container">
-        <div class="app-content">
-            <!-- HOME TAB -->
-            <div id="home" class="tab-content active">
-                <div class="header">
-                    <div class="header-title">SUPERLEAGUE YEAH</div>
-                    <div class="header-subtitle">Season 2026</div>
-                </div>
-                <div class="home-content">
-                    <div class="stats-banner" id="roundBanner">Round 4 â IN PROGRESS</div>
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-value">16</div>
-                            <div class="stat-label">Teams</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value">791</div>
-                            <div class="stat-label">Players</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value">4</div>
-                            <div class="stat-label">Round Live</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value">148</div>
-                            <div class="stat-label">Injuries</div>
+    <header>
+        <div class="header-content">
+            <h1>â¡ Superleague Yeah</h1>
+            <button class="search-btn" id="searchBtn">ð</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- HOME TAB -->
+        <div class="container home-container active">
+            <div class="hero">
+                <h2>Fantasy AFL Season 2026</h2>
+                <p>16 coaches. One league. All the glory.</p>
+            </div>
+
+            <!-- Form Guide Section -->
+            <div class="form-guide-section">
+                <div class="form-guide-title">Top 4 Form Guide</div>
+                <div class="form-guide-items">
+                    <div class="form-guide-item">
+                        <div class="coach-name">1. Josh</div>
+                        <div class="team-name">Once Bitten</div>
+                        <div class="form-results">
+                            <div class="result win">W</div>
+                            <div class="result win">W</div>
+                            <div class="result win">W</div>
                         </div>
                     </div>
-                    <div class="mini-ladder">
-                        <div class="mini-ladder-title">Current Leaders</div>
-                        <div id="miniLadder"></div>
+                    <div class="form-guide-item">
+                        <div class="coach-name">2. Cammy</div>
+                        <div class="team-name">Never Won a Premiership</div>
+                        <div class="form-results">
+                            <div class="result win">W</div>
+                            <div class="result win">W</div>
+                            <div class="result win">W</div>
+                        </div>
                     </div>
-                    <div class="live-ticker">
-                        <div class="ticker-title">Round 4 Live</div>
-                        <div id="liveMatches"></div>
+                    <div class="form-guide-item">
+                        <div class="coach-name">3. Tanka</div>
+                        <div class="team-name">I beat Dane last year FC</div>
+                        <div class="form-results">
+                            <div class="result win">W</div>
+                            <div class="result win">W</div>
+                            <div class="result win">W</div>
+                        </div>
+                    </div>
+                    <div class="form-guide-item">
+                        <div class="coach-name">4. A Smith</div>
+                        <div class="team-name">Just in Case</div>
+                        <div class="form-results">
+                            <div class="result win">W</div>
+                            <div class="result win">W</div>
+                            <div class="result loss">L</div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- LISTS TAB -->
-            <div id="lists" class="tab-content">
-                <div class="header">
-                    <div class="header-title">COACHES</div>
-                    <div class="header-subtitle">All 16 Fantasy Coaches</div>
-                </div>
-                <div class="lists-content" id="coachesList"></div>
-            </div>
-
-            <!-- FIXTURE TAB -->
-            <div id="fixture" class="tab-content">
-                <div class="header">
-                    <div class="header-title">FIXTURE</div>
-                    <div class="header-subtitle">Head-to-Head Matchups</div>
-                </div>
-                <div class="fixture-content">
-                    <div class="round-selector" id="roundSelector"></div>
-                    <div class="matches-container" id="matchesContainer"></div>
-                </div>
-            </div>
-
-            <!-- TEAM TAB -->
-            <div id="team" class="tab-content">
-                <div class="header">
-                    <div class="header-title">YOUR TEAM</div>
-                    <div class="header-subtitle">Squad & Stats</div>
-                </div>
-                <div class="team-content">
-                    <div class="coach-selector">
-                        <label class="selector-label">Select Coach</label>
-                        <select id="coachSelect" onchange="updateTeamTab()"></select>
-                    </div>
-                    <div class="team-stats">
-                        <div class="team-stat-value" id="teamPoints">0</div>
-                        <div class="team-stat-label">Fantasy Points This Season</div>
-                    </div>
-                    <div class="players-list" id="playersList"></div>
-                </div>
-            </div>
-
-            <!-- LADDER TAB -->
-            <div id="ladder" class="tab-content">
-                <div class="header">
-                    <div class="header-title">LADDER</div>
-                    <div class="header-subtitle">Current Standings</div>
-                </div>
-                <div class="ladder-content">
-                    <div class="ladder-tabs">
-                        <div class="ladder-tab active" onclick="switchLadderTab('brief')">Brief</div>
-                        <div class="ladder-tab" onclick="switchLadderTab('extended')">Extended</div>
-                    </div>
-                    <table class="ladder-table">
-                        <thead class="ladder-header">
-                            <tr>
-                                <th>#</th>
-                                <th>TEAM</th>
-                                <th>P</th>
-                                <th>W</th>
-                                <th>PTS</th>
-                                <th>AVG</th>
-                                <th class="ladder-extended">FOR</th>
-                                <th class="ladder-extended">AGAINST</th>
-                                <th class="ladder-extended">%</th>
-                            </tr>
-                        </thead>
-                        <tbody class="ladder-body" id="ladderBody"></tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- INJURIES TAB -->
-            <div id="injuries" class="tab-content">
-                <div class="header">
-                    <div class="header-title">INJURIES</div>
-                    <div class="header-subtitle">AFL Squad Status</div>
-                </div>
-                <div class="injuries-content">
-                    <div class="injuries-header">
-                        <div class="injury-filter" style="flex: 1;">
-                            <label class="selector-label">Filter by Team</label>
-                            <select id="injuryTeamFilter" onchange="filterInjuries()">
-                                <option value="">All Teams</option>
-                            </select>
-                        </div>
-                        <div class="injury-count" id="injuryCount">0</div>
-                    </div>
-                    <div id="injuriesContainer"></div>
-                </div>
+            <!-- Tip Box -->
+            <div class="tip-box">
+                <span id="randomTip"></span>
             </div>
         </div>
 
-        <!-- BOTTOM NAVIGATION -->
-        <div class="bottom-nav">
-            <div class="nav-item active" data-tab="home" onclick="switchTab('home')">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-                </svg>
-                <span>Home</span>
+        <!-- LISTS TAB -->
+        <div class="container lists-container">
+            <div class="search-bar">
+                <input type="text" class="search-input" id="coachSearchInput" placeholder="Search coaches by name or team...">
             </div>
-            <div class="nav-item" data-tab="lists" onclick="switchTab('lists')">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M3 13h8v-2H3v2zm0 4h8v-2H3v2zm0-8h8V7H3v2zm10 0h8V7h-8v2zM3 19h8v-2H3v2zm10 0h8v-2h-8v2zm0-8h8v-2h-8v2z"/>
-                </svg>
-                <span>Lists</span>
-            </div>
-            <div class="nav-item" data-tab="fixture" onclick="switchTab('fixture')">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/>
-                </svg>
-                <span>Fixture</span>
-            </div>
-            <div class="nav-item" data-tab="team" onclick="switchTab('team')">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                </svg>
-                <span>Team</span>
-            </div>
-            <div class="nav-item" data-tab="ladder" onclick="switchTab('ladder')">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M4 6h4v5H4zm10-4h4v9h-4zm-6 7h4v7H8zm6 0h4v7h-4z"/>
-                </svg>
-                <span>Ladder</span>
-            </div>
-            <div class="nav-item" data-tab="injuries" onclick="switchTab('injuries')">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 9.5h3.5V15h-3.5v3.5H12v-3.5H8.5v-2.5H12V9h2z"/>
-                </svg>
-                <span>Injuries</span>
+
+            <div class="coaches-grid" id="coachesGrid">
+                <!-- Populated by JS -->
             </div>
         </div>
+
+        <!-- FIXTURE TAB -->
+        <div class="container fixture-container">
+            <div id="fixtureContent">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+
+        <!-- TEAM TAB -->
+        <div class="container team-container">
+            <div class="team-selector" id="teamSelector">
+                <!-- Populated by JS -->
+            </div>
+            <div id="teamDetailContent">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+
+        <!-- LADDER TAB -->
+        <div class="container ladder-container">
+            <div class="card">
+                <h3>League Ladder</h3>
+                <table class="ladder-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Coach</th>
+                            <th>Form</th>
+                            <th>P</th>
+                            <th>W</th>
+                            <th>Pts</th>
+                            <th>Avg</th>
+                            <th>PF</th>
+                            <th>PA</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ladderBody">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- INJURIES TAB -->
+        <div class="container injuries-container">
+            <div class="injury-summary" id="injurySummary">
+                <!-- Populated by JS -->
+            </div>
+
+            <div class="injury-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="season">Season</button>
+                <button class="filter-btn" data-filter="longterm">Long-term</button>
+                <button class="filter-btn" data-filter="shortterm">Short-term</button>
+            </div>
+
+            <div id="injuriesContent">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+
+        <!-- DRAFT TAB -->
+        <div class="container draft-container">
+            <div class="draft-note">
+                Snake Draft -- Even rounds reverse order. Coaches alternate picking order each round.
+            </div>
+
+            <div class="draft-board-container">
+                <div class="draft-board" id="draftBoard">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-overlay-header">
+            <h2 style="color: #00d4ff; font-size: 1.5rem;">Find a Player</h2>
+            <button class="search-overlay-close" id="searchOverlayClose">&times;</button>
+        </div>
+        <input type="text" class="search-overlay-input" id="playerSearchInput" placeholder="Enter player name...">
+        <div class="search-results" id="searchResults"></div>
     </div>
+
+    <!-- Bottom Navigation -->
+    <nav>
+        <div class="nav-item active" data-tab="home">
+            <div class="nav-icon">ð </div>
+            <div>Home</div>
+        </div>
+        <div class="nav-item" data-tab="lists">
+            <div class="nav-icon">ð</div>
+            <div>Lists</div>
+        </div>
+        <div class="nav-item" data-tab="fixture">
+            <div class="nav-icon">ð</div>
+            <div>Fixture</div>
+        </div>
+        <div class="nav-item" data-tab="team">
+            <div class="nav-icon">ð¥</div>
+            <div>Team</div>
+        </div>
+        <div class="nav-item" data-tab="ladder">
+            <div class="nav-icon">ð</div>
+            <div>Ladder</div>
+        </div>
+        <div class="nav-item" data-tab="injuries">
+            <div class="nav-icon">ð©¹</div>
+            <div>Injuries</div>
+        </div>
+    </nav>
+
+    <!-- Floating Search Button -->
+    <button class="floating-search" id="floatingSearchBtn">ð</button>
 
     <script>
         // DATA
-        const LADDER = [
-            {rank:1, coach:"Josh", team:"Once Bitten", p:3, w:3, pts:12, avg:200.3, pf:601, pa:414.5},
-            {rank:2, coach:"Cammy", team:"Never Won a Premiership", p:3, w:3, pts:12, avg:175.3, pf:526, pa:369.5},
-            {rank:3, coach:"Tanka", team:"I beat Dane last year FC", p:3, w:3, pts:12, avg:170, pf:510, pa:433.5},
-            {rank:4, coach:"A Smith", team:"Just in Case", p:3, w:2, pts:8, avg:198.8, pf:596.5, pa:445},
-            {rank:5, coach:"Dane", team:"Succulent Untamed Meat", p:3, w:2, pts:8, avg:188, pf:564, pa:468},
-            {rank:6, coach:"Andy", team:"The Hawthorne Hawks", p:3, w:2, pts:8, avg:172.2, pf:516.5, pa:512},
-            {rank:7, coach:"Flags", team:"Always Relevant", p:3, w:2, pts:8, avg:169.5, pf:508.5, pa:493.5},
-            {rank:8, coach:"Age", team:"Land of the Giants", p:3, w:2, pts:8, avg:136.3, pf:409, pa:452.5},
-            {rank:9, coach:"Libba", team:"The German Shepherds", p:3, w:1, pts:4, avg:182.2, pf:546.5, pa:568},
-            {rank:10, coach:"Isaac", team:"Formerly Known As", p:3, w:1, pts:4, avg:177.2, pf:531.5, pa:533},
-            {rank:11, coach:"Fraser", team:"VOSS IN", p:3, w:1, pts:4, avg:156.8, pf:470.5, pa:534},
-            {rank:12, coach:"MDT", team:"DMT", p:3, w:1, pts:4, avg:152.2, pf:456.5, pa:490},
-            {rank:13, coach:"Jack", team:"Cheeseburger extra perkins", p:3, w:1, pts:4, avg:135, pf:405, pa:447},
-            {rank:14, coach:"Cram", team:"Duets FC", p:3, w:0, pts:0, avg:159.2, pf:477.5, pa:555.5},
-            {rank:15, coach:"Joe", team:"Shabadoos", p:3, w:0, pts:0, avg:118.3, pf:355, pa:468},
-            {rank:16, coach:"Georgrick", team:"Team 1016", p:3, w:0, pts:0, avg:111, pf:333, pa:623}
+        const coaches = [
+            { rank: 1, name: "Josh", team: "Once Bitten", P: 3, W: 3, Pts: 12, Avg: 200.3, PF: 601, PA: 414.5, color: "#ff6b6b", form: ["W", "W", "W"] },
+            { rank: 2, name: "Cammy", team: "Never Won a Premiership", P: 3, W: 3, Pts: 12, Avg: 175.3, PF: 526, PA: 369.5, color: "#4ecdc4", form: ["W", "W", "W"] },
+            { rank: 3, name: "Tanka", team: "I beat Dane last year FC", P: 3, W: 3, Pts: 12, Avg: 170, PF: 510, PA: 433.5, color: "#45b7d1", form: ["W", "W", "W"] },
+            { rank: 4, name: "A Smith", team: "Just in Case", P: 3, W: 2, Pts: 8, Avg: 198.8, PF: 596.5, PA: 445, color: "#96ceb4", form: ["W", "W", "L"] },
+            { rank: 5, name: "Dane", team: "Succulent Untamed Meat", P: 3, W: 2, Pts: 8, Avg: 188, PF: 564, PA: 468, color: "#ffeaa7", form: ["W", "L", "W"] },
+            { rank: 6, name: "Andy", team: "The Hawthorne Hawks", P: 3, W: 2, Pts: 8, Avg: 172.2, PF: 516.5, PA: 512, color: "#dfe6e9", form: ["W", "L", "W"] },
+            { rank: 7, name: "Flags", team: "Always Relevant", P: 3, W: 2, Pts: 8, Avg: 169.5, PF: 508.5, PA: 493.5, color: "#fd79a8", form: ["W", "L", "W"] },
+            { rank: 8, name: "Age", team: "Land of the Giants", P: 3, W: 2, Pts: 8, Avg: 136.3, PF: 409, PA: 452.5, color: "#a29bfe", form: ["W", "W", "L"] },
+            { rank: 9, name: "Libba", team: "The German Shepherds", P: 3, W: 1, Pts: 4, Avg: 182.2, PF: 546.5, PA: 568, color: "#fab1a0", form: ["W", "L", "L"] },
+            { rank: 10, name: "Isaac", team: "Formerly Known As", P: 3, W: 1, Pts: 4, Avg: 177.2, PF: 531.5, PA: 533, color: "#74b9ff", form: ["L", "W", "L"] },
+            { rank: 11, name: "Fraser", team: "VOSS IN", P: 3, W: 1, Pts: 4, Avg: 156.8, PF: 470.5, PA: 534, color: "#81ecec", form: ["W", "L", "L"] },
+            { rank: 12, name: "MDT", team: "DMT", P: 3, W: 1, Pts: 4, Avg: 152.2, PF: 456.5, PA: 490, color: "#f39c12", form: ["L", "W", "L"] },
+            { rank: 13, name: "Jack", team: "Cheeseburger extra perkins", P: 3, W: 1, Pts: 4, Avg: 135, PF: 405, PA: 447, color: "#e17055", form: ["L", "W", "L"] },
+            { rank: 14, name: "Cram", team: "Duets FC", P: 3, W: 0, Pts: 0, Avg: 159.2, PF: 477.5, PA: 555.5, color: "#00b894", form: ["L", "L", "L"] },
+            { rank: 15, name: "Joe", team: "Shabadoos", P: 3, W: 0, Pts: 0, Avg: 118.3, PF: 355, PA: 468, color: "#e84393", form: ["L", "L", "L"] },
+            { rank: 16, name: "Georgrick", team: "Team 1016", P: 3, W: 0, Pts: 0, Avg: 111, PF: 333, PA: 623, color: "#c44569", form: ["L", "L", "L"] }
         ];
 
-        const MATCHES = {
-            1: [
-                {t1:"Tanka", s1:179, t2:"Cram", s2:138},
-                {t1:"Fraser", s1:201.5, t2:"Isaac", s2:192.5},
-                {t1:"Andy", s1:208.5, t2:"Libba", s2:198.5},
-                {t1:"Cammy", s1:159.5, t2:"Jack", s2:116},
-                {t1:"Josh", s1:193.5, t2:"Age", s2:126},
-                {t1:"A Smith", s1:221, t2:"MDT", s2:129},
-                {t1:"Dane", s1:175, t2:"Joe", s2:143},
-                {t1:"Flags", s1:171, t2:"Georgrick", s2:113}
+        const rosters = {
+            "Cammy": [
+                { name: "Max Gawn", afl: "Melbourne" },
+                { name: "Jake Waterman", afl: "West Coast Eagles" },
+                { name: "Josh Dunkley", afl: "Brisbane Lions" },
+                { name: "Jordan Ridley", afl: "Essendon" },
+                { name: "Shannon Neale", afl: "Hawthorn" }
             ],
-            2: [
-                {t1:"Flags", s1:169.5, t2:"Cram", s2:159},
-                {t1:"Age", s1:153.5, t2:"Dane", s2:146},
-                {t1:"Cammy", s1:207, t2:"Andy", s2:136},
-                {t1:"Josh", s1:206.5, t2:"Libba", s2:149.5},
-                {t1:"A Smith", s1:216, t2:"Fraser", s2:112.5},
-                {t1:"Jack", s1:173, t2:"Joe", s2:106},
-                {t1:"Tanka", s1:162, t2:"MDT", s2:175.5},
-                {t1:"Isaac", s1:161, t2:"Georgrick", s2:0}
+            "Flags": [
+                { name: "Tim English", afl: "Western Bulldogs" },
+                { name: "Logan Morris", afl: "Gold Coast SUNS" },
+                { name: "Nick Daicos", afl: "Collingwood" },
+                { name: "Patrick Voss", afl: "Brisbane Lions" },
+                { name: "Conor Nash", afl: "St Kilda" }
             ],
-            3: [
-                {t1:"Cammy", s1:159.5, t2:"Jack", s2:116},
-                {t1:"Tanka", s1:169, t2:"Joe", s2:106},
-                {t1:"Josh", s1:201, t2:"Georgrick", s2:107}
+            "Jack": [
+                { name: "Brodie Grundy", afl: "Sydney Swans" },
+                { name: "Harris Andrews", afl: "Brisbane Lions" },
+                { name: "Harry McKay", afl: "Carlton" },
+                { name: "Hugh McCluggage", afl: "Brisbane Lions" },
+                { name: "Willem Drew", afl: "Adelaide Crows" }
             ],
-            4: [
-                {t1:"Cram", s1:98, t2:"Georgrick", s2:47.5, live:true},
-                {t1:"Tanka", s1:86, t2:"Joe", s2:77, live:true}
+            "Cram": [
+                { name: "Jesse Hogan", afl: "GWS Giants" },
+                { name: "James Rowbottom", afl: "Sydney Swans" }
+            ],
+            "Josh": [
+                { name: "Lachie Neale", afl: "Brisbane Lions" },
+                { name: "Charlie Curnow", afl: "Carlton" },
+                { name: "Tom Stewart", afl: "Gold Coast SUNS" }
+            ],
+            "Dane": [
+                { name: "Zach Merrett", afl: "Essendon" },
+                { name: "Patrick Cripps", afl: "Carlton" },
+                { name: "Sam Walsh", afl: "Carlton" }
+            ],
+            "Andy": [
+                { name: "James Sicily", afl: "Hawthorn" },
+                { name: "Jai Newcombe", afl: "Melbourne" },
+                { name: "Josh Ward", afl: "Collingwood" }
+            ],
+            "Age": [
+                { name: "Jeremy Cameron", afl: "Geelong Cats" },
+                { name: "Mark Blicavs", afl: "Geelong Cats" },
+                { name: "Toby Conway", afl: "Hawthorn" }
+            ],
+            "Libba": [
+                { name: "Jack Crisp", afl: "Collingwood" },
+                { name: "Nick Daicos", afl: "Collingwood" },
+                { name: "Bobby Hill", afl: "GWS Giants" }
+            ],
+            "Isaac": [
+                { name: "Caleb Serong", afl: "Fremantle" },
+                { name: "Hayden Young", afl: "Fremantle" },
+                { name: "Shai Bolton", afl: "Richmond" }
+            ],
+            "Fraser": [
+                { name: "Andrew Brayshaw", afl: "Fremantle" },
+                { name: "Matt Rowell", afl: "Gold Coast SUNS" },
+                { name: "Noah Anderson", afl: "Gold Coast SUNS" }
+            ],
+            "MDT": [
+                { name: "Sam Draper", afl: "Essendon" },
+                { name: "Zach Merrett", afl: "Essendon" },
+                { name: "Nic Martin", afl: "Essendon" }
+            ],
+            "Tanka": [
+                { name: "Tom Mitchell", afl: "Collingwood" },
+                { name: "Jordan De Goey", afl: "Collingwood" },
+                { name: "Darcy Cameron", afl: "Collingwood" }
+            ],
+            "A Smith": [
+                { name: "Patrick Dangerfield", afl: "Geelong Cats" },
+                { name: "Jeremy Cameron", afl: "Geelong Cats" },
+                { name: "Tom Stewart", afl: "Gold Coast SUNS" }
+            ],
+            "Joe": [
+                { name: "Taylor Walker", afl: "Adelaide Crows" },
+                { name: "Darcy Fogarty", afl: "Adelaide Crows" },
+                { name: "Reilly O'Brien", afl: "Adelaide Crows" }
+            ],
+            "Georgrick": [
+                { name: "Ben King", afl: "Gold Coast SUNS" },
+                { name: "Jack Lukosius", afl: "Gold Coast SUNS" },
+                { name: "Matt Rowell", afl: "Gold Coast SUNS" }
             ]
         };
 
-        const ROSTERS = {
-            "Cammy": ["Max Gawn","Jake Waterman","Josh Dunkley","Jordan Ridley","Shannon Neale"],
-            "Flags": ["Tim English","Logan Morris","Nick Daicos","Patrick Voss","Conor Nash"],
-            "Jack": ["Brodie Grundy","Harris Andrews","Harry McKay","Hugh McCluggage","Willem Drew"],
-            "Cram": ["Jesse Hogan","James Rowbottom"],
-            "Josh": ["Lachie Neale","Charlie Curnow","Tom Stewart"],
-            "Dane": ["Zach Merrett","Patrick Cripps","Sam Walsh"],
-            "Andy": ["James Sicily","Jai Newcombe","Josh Ward"],
-            "Age": ["Jeremy Cameron","Mark Blicavs","Toby Conway"],
-            "Libba": ["Jack Crisp","Nick Daicos","Bobby Hill"],
-            "Isaac": ["Caleb Serong","Hayden Young","Shai Bolton"],
-            "Fraser": ["Andrew Brayshaw","Matt Rowell","Noah Anderson"],
-            "MDT": ["Sam Draper","Zach Merrett","Nic Martin"],
-            "Tanka": ["Tom Mitchell","Jordan De Goey","Darcy Cameron"],
-            "A Smith": ["Patrick Dangerfield","Jeremy Cameron","Tom Stewart"],
-            "Joe": ["Taylor Walker","Darcy Fogarty","Reilly O'Brien"],
-            "Georgrick": ["Ben King","Jack Lukosius","Matt Rowell"]
+        const allPlayers = [];
+        Object.entries(rosters).forEach(([coach, players]) => {
+            players.forEach(player => {
+                allPlayers.push({
+                    name: player.name,
+                    afl: player.afl,
+                    coach: coach
+                });
+            });
+        });
+
+        const matches = {
+            "Round 1": [
+                { team1: "Tanka", score1: 179, team2: "Cram", score2: 138 },
+                { team1: "Fraser", score1: 201.5, team2: "Isaac", score2: 192.5 },
+                { team1: "Andy", score1: 208.5, team2: "Libba", score2: 198.5 },
+                { team1: "Cammy", score1: 159.5, team2: "Jack", score2: 116 },
+                { team1: "Josh", score1: 193.5, team2: "Age", score2: 126 },
+                { team1: "A Smith", score1: 221, team2: "MDT", score2: 129 },
+                { team1: "Dane", score1: 175, team2: "Joe", score2: 143 },
+                { team1: "Flags", score1: 171, team2: "Georgrick", score2: 113 }
+            ],
+            "Round 2": [
+                { team1: "Flags", score1: 169.5, team2: "Cram", score2: 159 },
+                { team1: "Age", score1: 153.5, team2: "Dane", score2: 146 },
+                { team1: "Cammy", score1: 207, team2: "Andy", score2: 136 },
+                { team1: "Josh", score1: 206.5, team2: "Libba", score2: 149.5 },
+                { team1: "A Smith", score1: 216, team2: "Fraser", score2: 112.5 },
+                { team1: "Jack", score1: 173, team2: "Joe", score2: 106 },
+                { team1: "Tanka", score1: 162, team2: "MDT", score2: 175.5 },
+                { team1: "Isaac", score1: 161, team2: "Georgrick", score2: 0 }
+            ],
+            "Round 3": [
+                { team1: "Cammy", score1: 159.5, team2: "Jack", score2: 116 },
+                { team1: "Tanka", score1: 169, team2: "Joe", score2: 106 },
+                { team1: "Josh", score1: 201, team2: "Georgrick", score2: 107 }
+            ],
+            "Round 4 (LIVE)": [
+                { team1: "Cram", score1: 98, team2: "Georgrick", score2: 47.5, live: true },
+                { team1: "Tanka", score1: 86, team2: "Joe", score2: 77, live: true }
+            ]
         };
 
-        const INJURIES = [
-            {name:"Callum Ah Chee",team:"Adelaide Crows",injury:"Hamstring",ret:"5-7 weeks"},
-            {name:"Daniel Curtin",team:"Adelaide Crows",injury:"Knee",ret:"5-7 weeks"},
-            {name:"Jordan Dawson",team:"Adelaide Crows",injury:"Leg/Calf",ret:"Test"},
-            {name:"Jordon Butts",team:"Adelaide Crows",injury:"Head",ret:"Concussion protocols"},
-            {name:"Mark Keane",team:"Adelaide Crows",injury:"Leg/Calf",ret:"7-9 weeks"},
-            {name:"Rory Laird",team:"Adelaide Crows",injury:"Leg/Calf",ret:"Test"},
-            {name:"Toby Murray",team:"Adelaide Crows",injury:"Back",ret:"1-2 weeks"},
-            {name:"Ben Murphy",team:"Brisbane Lions",injury:"Hamstring",ret:"1-2 weeks"},
-            {name:"Darragh Joyce",team:"Brisbane Lions",injury:"Hamstring",ret:"TBC"},
-            {name:"Deven Robertson",team:"Brisbane Lions",injury:"Shoulder",ret:"Season"},
-            {name:"Josh Dunkley",team:"Brisbane Lions",injury:"Knee",ret:"Season"},
-            {name:"Ryan Lester",team:"Brisbane Lions",injury:"Knee",ret:"Indefinite"},
-            {name:"Cooper Lord",team:"Carlton",injury:"Ankle",ret:"2-3 weeks"},
-            {name:"Tom De Koning",team:"Carlton",injury:"Ankle",ret:"Test"},
-            {name:"Alex Cincotta",team:"Collingwood",injury:"Hamstring",ret:"3-4 weeks"},
-            {name:"Billy Frampton",team:"Collingwood",injury:"Knee",ret:"Season"},
-            {name:"Jamie Elliott",team:"Collingwood",injury:"Ankle",ret:"2-3 weeks"},
-            {name:"Jordan De Goey",team:"Collingwood",injury:"Foot",ret:"4-6 weeks"},
-            {name:"Mason Cox",team:"Collingwood",injury:"Knee",ret:"Season"},
-            {name:"Nathan Murphy",team:"Collingwood",injury:"Knee",ret:"Season"},
-            {name:"Rory Burns",team:"Collingwood",injury:"Shoulder",ret:"TBC"},
-            {name:"Scott Pendlebury",team:"Collingwood",injury:"Knee",ret:"TBC"},
-            {name:"Tom Mitchell",team:"Collingwood",injury:"Foot",ret:"6-8 weeks"},
-            {name:"Ben Hobbs",team:"Essendon",injury:"Ankle",ret:"2-3 weeks"},
-            {name:"Ben McKay",team:"Essendon",injury:"Back",ret:"1-2 weeks"},
-            {name:"Jake Stringer",team:"Essendon",injury:"Knee",ret:"Season"},
-            {name:"Todd Goldstein",team:"Essendon",injury:"Foot",ret:"Indefinite"},
-            {name:"Andrew Brayshaw",team:"Fremantle",injury:"Shoulder",ret:"2-3 weeks"},
-            {name:"Jaeger O'Meara",team:"Fremantle",injury:"Knee",ret:"Indefinite"},
-            {name:"Tom Emmett",team:"Fremantle",injury:"Knee",ret:"Season"},
-            {name:"Mitch Duncan",team:"Geelong Cats",injury:"Knee",ret:"TBC"},
-            {name:"Patrick Dangerfield",team:"Geelong Cats",injury:"Leg/Calf",ret:"1-2 weeks"},
-            {name:"Rhys Stanley",team:"Geelong Cats",injury:"Knee",ret:"Season"},
-            {name:"Ted Clohesy",team:"Geelong Cats",injury:"Hamstring",ret:"1-2 weeks"},
-            {name:"Ben Ainsworth",team:"Gold Coast SUNS",injury:"Ankle",ret:"Test"},
-            {name:"Bodhi Uwland",team:"Gold Coast SUNS",injury:"Knee",ret:"Season"},
-            {name:"David Swallow",team:"Gold Coast SUNS",injury:"Hamstring",ret:"2-3 weeks"},
-            {name:"Elijah Hollands",team:"Gold Coast SUNS",injury:"Knee",ret:"Season"}
+        const injuries = {
+            "Adelaide Crows": [
+                { player: "Callum Ah Chee", status: "Hamstring", duration: "5-7wks", severity: "longterm" },
+                { player: "Daniel Curtin", status: "Knee", duration: "5-7wks", severity: "longterm" },
+                { player: "Jordan Dawson", status: "Leg/Calf", duration: "Test", severity: "shortterm" },
+                { player: "Jordon Butts", status: "Head", duration: "Concussion protocols", severity: "shortterm" },
+                { player: "Mark Keane", status: "Leg/Calf", duration: "7-9wks", severity: "longterm" },
+                { player: "Rory Laird", status: "Leg/Calf", duration: "Test", severity: "shortterm" },
+                { player: "Toby Murray", status: "Back", duration: "1-2wks", severity: "shortterm" }
+            ],
+            "Brisbane Lions": [
+                { player: "Ben Murphy", status: "Hamstring", duration: "1-2wks", severity: "shortterm" },
+                { player: "Darragh Joyce", status: "Hamstring", duration: "TBC", severity: "longterm" },
+                { player: "Deven Robertson", status: "Shoulder", duration: "Season", severity: "season" },
+                { player: "Josh Dunkley", status: "Knee", duration: "Season", severity: "season" },
+                { player: "Ryan Lester", status: "Knee", duration: "Indefinite", severity: "season" }
+            ],
+            "Carlton": [
+                { player: "Cooper Lord", status: "Ankle", duration: "2-3wks", severity: "shortterm" },
+                { player: "Tom De Koning", status: "Ankle", duration: "Test", severity: "shortterm" }
+            ],
+            "Collingwood": [
+                { player: "Alex Cincotta", status: "Hamstring", duration: "3-4wks", severity: "longterm" },
+                { player: "Billy Frampton", status: "Knee", duration: "Season", severity: "season" },
+                { player: "Jamie Elliott", status: "Ankle", duration: "2-3wks", severity: "shortterm" },
+                { player: "Jordan De Goey", status: "Foot", duration: "4-6wks", severity: "longterm" },
+                { player: "Mason Cox", status: "Knee", duration: "Season", severity: "season" },
+                { player: "Nathan Murphy", status: "Knee", duration: "Season", severity: "season" },
+                { player: "Rory Burns", status: "Shoulder", duration: "TBC", severity: "longterm" },
+                { player: "Scott Pendlebury", status: "Knee", duration: "TBC", severity: "longterm" },
+                { player: "Tom Mitchell", status: "Foot", duration: "6-8wks", severity: "longterm" }
+            ],
+            "Essendon": [
+                { player: "Ben Hobbs", status: "Ankle", duration: "2-3wks", severity: "shortterm" },
+                { player: "Ben McKay", status: "Back", duration: "1-2wks", severity: "shortterm" },
+                { player: "Jake Stringer", status: "Knee", duration: "Season", severity: "season" },
+                { player: "Todd Goldstein", status: "Foot", duration: "Indefinite", severity: "season" }
+            ],
+            "Fremantle": [
+                { player: "Andrew Brayshaw", status: "Shoulder", duration: "2-3wks", severity: "shortterm" },
+                { player: "Jaeger O'Meara", status: "Knee", duration: "Indefinite", severity: "season" },
+                { player: "Tom Emmett", status: "Knee", duration: "Season", severity: "season" }
+            ],
+            "Geelong Cats": [
+                { player: "Mitch Duncan", status: "Knee", duration: "TBC", severity: "longterm" },
+                { player: "Patrick Dangerfield", status: "Leg/Calf", duration: "1-2wks", severity: "shortterm" },
+                { player: "Rhys Stanley", status: "Knee", duration: "Season", severity: "season" },
+                { player: "Ted Clohesy", status: "Hamstring", duration: "1-2wks", severity: "shortterm" }
+            ],
+            "Gold Coast SUNS": [
+                { player: "Ben Ainsworth", status: "Ankle", duration: "Test", severity: "shortterm" },
+                { player: "Bodhi Uwland", status: "Knee", duration: "Season", severity: "season" },
+                { player: "David Swallow", status: "Hamstring", duration: "2-3wks", severity: "shortterm" },
+                { player: "Elijah Hollands", status: "Knee", duration: "Season", severity: "season" }
+            ]
+        };
+
+        const tips = [
+            "Josh's Once Bitten leads the league with a 200.3 average -- clinical!",
+            "Tanka, Josh, and Cammy are all undefeated at 3-0 after three rounds",
+            "A Smith's Just in Case is third on the ladder but has played some crucial trades",
+            "Georgrick's Team 1016 is looking to find their feet after a rough start",
+            "The top 4 have separated themselves from the rest of the field",
+            "Defense wins championships -- check out the teams with the lowest points against",
+            "Dane's Succulent Untamed Meat is making a late-season push",
+            "Form is temporary, class is permanent -- watch the ladder shifts!",
+            "Fraser's VOSS IN is living up to its name with consistent performances",
+            "17 coaches. 16 dreams. 1 premiership to lift."
         ];
 
-        const TEAM_COLORS = {
-            "Once Bitten": "#ff6b6b",
-            "Never Won a Premiership": "#4ecdc4",
-            "I beat Dane last year FC": "#45b7d1",
-            "Just in Case": "#96ceb4",
-            "Succulent Untamed Meat": "#ffeaa7",
-            "The Hawthorne Hawks": "#dfe6e9",
-            "Always Relevant": "#fd79a8",
-            "Land of the Giants": "#a29bfe",
-            "The German Shepherds": "#fab1a0",
-            "Formerly Known As": "#74b9ff",
-            "VOSS IN": "#81ecec",
-            "DMT": "#f39c12",
-            "Cheeseburger extra perkins": "#e17055",
-            "Duets FC": "#00b894",
-            "Shabadoos": "#e84393",
-            "Team 1016": "#c44569"
-        };
+        // UTILITY FUNCTIONS
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
 
-        // FUNCTIONS
         function switchTab(tabName) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-            document.getElementById(tabName).classList.add('active');
-            document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+            document.querySelectorAll('.container').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
 
-            if (tabName === 'fixture') renderFixture(1);
-            if (tabName === 'ladder') renderLadder();
-            if (tabName === 'home') renderHome();
-            if (tabName === 'lists') renderLists();
-            if (tabName === 'injuries') renderInjuries();
-        }
-
-        function renderHome() {
-            const mini = LADDER.slice(0, 4).map(row => `
-                <div class="ladder-row">
-                    <div class="ladder-rank">${row.rank}</div>
-                    <div class="ladder-team-info">
-                        <div class="ladder-team-name">${row.team}</div>
-                        <div class="ladder-coach">${row.coach}</div>
-                    </div>
-                    <div class="ladder-pts">${row.pts}</div>
-                </div>
-            `).join('');
-            document.getElementById('miniLadder').innerHTML = mini;
-
-            const live = MATCHES[4].map(m => `
-                <div class="match-item">
-                    <div class="match-team">${m.t1}</div>
-                    <div class="match-score">${m.s1}</div>
-                    <div class="match-vs">v</div>
-                    <div class="match-score">${m.s2}</div>
-                    <div class="match-team" style="text-align:right;">${m.t2}</div>
-                </div>
-            `).join('');
-            document.getElementById('liveMatches').innerHTML = live;
-        }
-
-        function renderLists() {
-            const coaches = LADDER.map(row => ({name: row.coach, team: row.team}));
-            const html = coaches.map((coach, idx) => `
-                <div class="coach-card" onclick="toggleCoachCard(this)">
-                    <div class="coach-header">
-                        <div class="coach-info">
-                            <div class="coach-name">${idx + 1}. ${coach.name}</div>
-                            <div class="coach-team">${coach.team}</div>
-                        </div>
-                        <svg class="expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
-                    </div>
-                    <div class="roster-list">
-                        ${ROSTERS[coach.name].map(p => `<div class="roster-player">${p}</div>`).join('')}
-                    </div>
-                </div>
-            `).join('');
-            document.getElementById('coachesList').innerHTML = html;
-        }
-
-        function toggleCoachCard(el) {
-            el.classList.toggle('expanded');
-        }
-
-        function renderFixture(round) {
-            const rounds = Object.keys(MATCHES).map(r => parseInt(r)).concat(Array.from({length:19}, (_, i) => i + 5));
-            document.getElementById('roundSelector').innerHTML = rounds.map(r => `
-                <div class="round-pill ${r === round ? 'active' : ''}" onclick="renderFixture(${r})">Round ${r}</div>
-            `).join('');
-
-            const matches = MATCHES[round] || [];
-            const matchesHtml = matches.map(m => {
-                const coachData1 = LADDER.find(l => l.coach === m.t1);
-                const coachData2 = LADDER.find(l => l.coach === m.t2);
-                const team1 = coachData1 ? coachData1.team : m.t1;
-                const team2 = coachData2 ? coachData2.team : m.t2;
-                const color1 = TEAM_COLORS[team1];
-                const color2 = TEAM_COLORS[team2];
-                const winner = m.s1 > m.s2 ? 1 : m.s1 < m.s2 ? 2 : 0;
-                const status = m.live ? 'IN PROGRESS' : (winner ? 'COMPLETED' : 'FINAL');
-
-                return `
-                    <div class="match-card">
-                        <div class="match-side">
-                            <div class="team-color-dot" style="background-color: ${color1}"></div>
-                            <div class="team-details">
-                                <div class="team-name">${team1}</div>
-                                <div class="coach-name-small">${m.t1}</div>
-                            </div>
-                        </div>
-                        <div class="match-center">
-                            <div class="match-score-large">${m.s1}</div>
-                            <div class="match-status ${m.live ? 'live' : winner ? 'winner' : ''}">${m.live ? 'LIVE' : 'vs'}</div>
-                            <div class="match-score-large">${m.s2}</div>
-                        </div>
-                        <div class="match-side" style="justify-content: flex-end;">
-                            <div class="team-details" style="text-align: right;">
-                                <div class="team-name">${team2}</div>
-                                <div class="coach-name-small">${m.t2}</div>
-                            </div>
-                            <div class="team-color-dot" style="background-color: ${color2}"></div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-            document.getElementById('matchesContainer').innerHTML = matchesHtml;
-        }
-
-        function updateTeamTab() {
-            const coach = document.getElementById('coachSelect').value;
-            if (!coach) return;
-
-            const ladderRow = LADDER.find(l => l.coach === coach);
-            const totalPts = (ladderRow ? ladderRow.pf : 0);
-            document.getElementById('teamPoints').textContent = totalPts;
-
-            const players = ROSTERS[coach] || [];
-            const aflTeams = {
-                "Max Gawn": "Melbourne",
-                "Jake Waterman": "West Coast Eagles",
-                "Josh Dunkley": "Brisbane Lions",
-                "Jordan Ridley": "Essendon",
-                "Shannon Neale": "Hawthorn",
-                "Tim English": "Western Bulldogs",
-                "Logan Morris": "Gold Coast SUNS",
-                "Nick Daicos": "Collingwood",
-                "Patrick Voss": "Brisbane Lions",
-                "Conor Nash": "St Kilda",
-                "Brodie Grundy": "Sydney Swans",
-                "Harris Andrews": "Brisbane Lions",
-                "Harry McKay": "Carlton",
-                "Hugh McCluggage": "Brisbane Lions",
-                "Willem Drew": "Adelaide Crows",
-                "Jesse Hogan": "GWS Giants",
-                "James Rowbottom": "Sydney Swans",
-                "Lachie Neale": "Brisbane Lions",
-                "Charlie Curnow": "Carlton",
-                "Tom Stewart": "Gold Coast SUNS",
-                "Zach Merrett": "Essendon",
-                "Patrick Cripps": "Carlton",
-                "Sam Walsh": "Carlton",
-                "James Sicily": "Hawthorn",
-                "Jai Newcombe": "Melbourne",
-                "Josh Ward": "Collingwood",
-                "Jeremy Cameron": "Geelong Cats",
-                "Mark Blicavs": "Geelong Cats",
-                "Toby Conway": "Hawthorn",
-                "Jack Crisp": "Collingwood",
-                "Bobby Hill": "GWS Giants",
-                "Caleb Serong": "Fremantle",
-                "Hayden Young": "Fremantle",
-                "Shai Bolton": "Richmond",
-                "Andrew Brayshaw": "Fremantle",
-                "Matt Rowell": "Gold Coast SUNS",
-                "Noah Anderson": "Gold Coast SUNS",
-                "Sam Draper": "Essendon",
-                "Nic Martin": "Essendon",
-                "Tom Mitchell": "Collingwood",
-                "Jordan De Goey": "Collingwood",
-                "Darcy Cameron": "Collingwood",
-                "Patrick Dangerfield": "Geelong Cats",
-                "Taylor Walker": "Adelaide Crows",
-                "Darcy Fogarty": "Adelaide Crows",
-                "Reilly O'Brien": "Adelaide Crows",
-                "Ben King": "Gold Coast SUNS",
-                "Jack Lukosius": "Gold Coast SUNS"
+            const tabMap = {
+                'home': 'home-container',
+                'lists': 'lists-container',
+                'fixture': 'fixture-container',
+                'team': 'team-container',
+                'ladder': 'ladder-container',
+                'injuries': 'injuries-container',
+                'draft': 'draft-container'
             };
 
-            const playersHtml = players.map(p => `
-                <div class="player-item">
-                    <div>
-                        <div class="player-name">${p}</div>
-                        <div class="player-afl-team">${aflTeams[p] || 'Unknown'}</div>
+            const container = document.querySelector('.' + tabMap[tabName]);
+            if (container) container.classList.add('active');
+
+            const navItem = document.querySelector(`.nav-item[data-tab="${tabName}"]`);
+            if (navItem) navItem.classList.add('active');
+
+            showToast(tabName.charAt(0).toUpperCase() + tabName.slice(1));
+        }
+
+        // INIT HOME PAGE
+        function initHome() {
+            const tip = tips[Math.floor(Math.random() * tips.length)];
+            document.getElementById('randomTip').textContent = tip;
+        }
+
+        // INIT LISTS PAGE
+        function initLists() {
+            const coachesGrid = document.getElementById('coachesGrid');
+            coachesGrid.innerHTML = '';
+
+            coaches.forEach(coach => {
+                const card = document.createElement('div');
+                card.className = 'coach-card';
+                card.style.borderColor = coach.color;
+
+                const playersList = rosters[coach.name] || [];
+                const playersHTML = playersList.slice(0, 5).map(p =>
+                    `<div class="player-item">${p.name}<br><span class="afl-team">${p.afl}</span></div>`
+                ).join('');
+
+                card.innerHTML = `
+                    <div class="coach-rank">#${coach.rank}</div>
+                    <div class="coach-title">${coach.name}</div>
+                    <div class="team-tagline">"${coach.team}"</div>
+                    <div class="coach-stats">
+                        <div class="stat-item">
+                            <div class="stat-label">Win Rate</div>
+                            <div class="stat-value">${coach.W}-${coach.P - coach.W}</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Points</div>
+                            <div class="stat-value">${coach.Pts}</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Average</div>
+                            <div class="stat-value">${coach.Avg}</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">PF</div>
+                            <div class="stat-value">${coach.PF}</div>
+                        </div>
                     </div>
-                </div>
-            `).join('');
-            document.getElementById('playersList').innerHTML = playersHtml;
-        }
-
-        function renderLadder() {
-            const html = LADDER.map(row => {
-                const pct = ((row.pf / (row.pf + row.pa)) * 100).toFixed(1);
-                const isFinalsZone = row.rank <= 8;
-                return `
-                    <tr ${isFinalsZone ? 'class="finals-zone"' : ''}>
-                        <td>${row.rank}</td>
-                        <td>${row.team}</td>
-                        <td>${row.p}</td>
-                        <td>${row.w}</td>
-                        <td>${row.pts}</td>
-                        <td>${row.avg}</td>
-                        <td class="ladder-extended">${row.pf}</td>
-                        <td class="ladder-extended">${row.pa}</td>
-                        <td class="ladder-extended">${pct}%</td>
-                    </tr>
+                    <div class="players-list">
+                        <div class="players-list-title">Key Players</div>
+                        ${playersHTML}
+                    </div>
                 `;
-            }).join('');
-            document.getElementById('ladderBody').innerHTML = html;
+
+                coachesGrid.appendChild(card);
+            });
+
+            // Search functionality
+            const searchInput = document.getElementById('coachSearchInput');
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase();
+                document.querySelectorAll('.coach-card').forEach(card => {
+                    const title = card.querySelector('.coach-title').textContent.toLowerCase();
+                    const team = card.querySelector('.team-tagline').textContent.toLowerCase();
+                    card.style.display = title.includes(query) || team.includes(query) ? 'block' : 'none';
+                });
+            });
         }
 
-        function switchLadderTab(mode) {
-            document.querySelectorAll('.ladder-tab').forEach(el => el.classList.remove('active'));
-            event.target.classList.add('active');
+        // INIT FIXTURE PAGE
+        function initFixture() {
+            const fixtureContent = document.getElementById('fixtureContent');
+            fixtureContent.innerHTML = '';
 
-            const cells = document.querySelectorAll('.ladder-extended');
-            cells.forEach(cell => cell.classList.remove('active'));
-            if (mode === 'extended') {
-                cells.forEach(cell => cell.classList.add('active'));
+            Object.entries(matches).forEach(([round, roundMatches]) => {
+                const section = document.createElement('div');
+                section.className = 'round-section';
+
+                const isLive = round.includes('LIVE');
+                section.innerHTML = `<div class="round-title">${round}</div>`;
+
+                const grid = document.createElement('div');
+                grid.className = 'matches-grid';
+
+                roundMatches.forEach(match => {
+                    const card = document.createElement('div');
+                    card.className = 'match-card';
+
+                    const team1Coach = coaches.find(c => c.name === match.team1);
+                    const team2Coach = coaches.find(c => c.name === match.team2);
+
+                    const winner = match.score1 > match.score2 ? 'team1' : 'team2';
+
+                    card.innerHTML = `
+                        <div class="match-team ${!isLive && winner === 'team1' ? 'winner' : ''}">
+                            <div class="team-name-match">${match.team1}</div>
+                            <div class="score">${match.score1}</div>
+                        </div>
+                        <div class="match-team ${!isLive && winner === 'team2' ? 'winner' : ''}">
+                            <div class="team-name-match">${match.team2}</div>
+                            <div class="score">${match.score2}</div>
+                        </div>
+                        ${match.live ? '<div class="match-status">LIVE <span class="live-badge">â</span></div>' : ''}
+                    `;
+
+                    grid.appendChild(card);
+                });
+
+                section.appendChild(grid);
+                fixtureContent.appendChild(section);
+            });
+        }
+
+        // INIT TEAM PAGE
+        function initTeam() {
+            const teamSelector = document.getElementById('teamSelector');
+            teamSelector.innerHTML = '';
+
+            coaches.forEach(coach => {
+                const btn = document.createElement('button');
+                btn.className = 'team-btn';
+                btn.style.borderColor = coach.color;
+                btn.style.color = coach.color;
+                btn.textContent = coach.name;
+                btn.dataset.coach = coach.name;
+
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.team-btn').forEach(b => b.classList.remove('active'));
+                    document.querySelectorAll('.team-detail').forEach(d => d.classList.remove('active'));
+                    btn.classList.add('active');
+                    document.querySelector(`[data-team="${coach.name}"]`).classList.add('active');
+                });
+
+                teamSelector.appendChild(btn);
+            });
+
+            const teamDetailContent = document.getElementById('teamDetailContent');
+            teamDetailContent.innerHTML = '';
+
+            coaches.forEach(coach => {
+                const detail = document.createElement('div');
+                detail.className = 'team-detail';
+                detail.dataset.team = coach.name;
+
+                const roster = rosters[coach.name] || [];
+                const playersHTML = roster.map(p =>
+                    `<div class="player-card">
+                        <div class="player-name">${p.name}</div>
+                        <div class="player-afl-team">${p.afl}</div>
+                    </div>`
+                ).join('');
+
+                detail.innerHTML = `
+                    <div class="team-header">
+                        <div class="team-color-box" style="background-color: ${coach.color}"></div>
+                        <div class="team-header-text">
+                            <h2>${coach.name}</h2>
+                            <div class="team-record">"${coach.team}" | Rank #${coach.rank} | ${coach.W}-${coach.P - coach.W} Record</div>
+                        </div>
+                    </div>
+
+                    <div class="team-stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-card-label">Points</div>
+                            <div class="stat-card-value">${coach.Pts}</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-label">Average</div>
+                            <div class="stat-card-value">${coach.Avg}</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-label">PF</div>
+                            <div class="stat-card-value">${coach.PF}</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-label">PA</div>
+                            <div class="stat-card-value">${coach.PA}</div>
+                        </div>
+                    </div>
+
+                    <div class="roster-section">
+                        <h3>Roster (${roster.length} Players)</h3>
+                        <div class="roster-grid">${playersHTML}</div>
+                    </div>
+                `;
+
+                teamDetailContent.appendChild(detail);
+            });
+
+            // Set first team as active
+            const firstBtn = teamSelector.querySelector('.team-btn');
+            if (firstBtn) {
+                firstBtn.classList.add('active');
+                document.querySelector('[data-team="Josh"]').classList.add('active');
             }
         }
 
-        function getInjurySeverity(retStr) {
-            if (retStr.includes('Season') || retStr.includes('Indefinite')) return 'season';
-            if (retStr.includes('6-8') || retStr.includes('5-7') || retStr.includes('7-9') || retStr.includes('4-6')) return 'long';
-            if (retStr.includes('3-4') || retStr.includes('2-3')) return 'medium';
-            return 'short';
+        // INIT LADDER PAGE
+        function initLadder() {
+            const ladderBody = document.getElementById('ladderBody');
+            ladderBody.innerHTML = '';
+
+            coaches.forEach(coach => {
+                const row = document.createElement('tr');
+                const formDots = coach.form.map(f =>
+                    `<div class="form-dot ${f === 'W' ? 'w' : 'l'}"></div>`
+                ).join('');
+
+                row.innerHTML = `
+                    <td><div class="rank-badge">${coach.rank}</div></td>
+                    <td>
+                        <div class="coach-info">
+                            <div style="width: 12px; height: 12px; background-color: ${coach.color}; border-radius: 3px;"></div>
+                            <div class="coach-info-text">
+                                <div class="coach-name-ladder">${coach.name}</div>
+                                <div class="team-name-ladder">${coach.team}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td><div class="form-guide-dots">${formDots}</div></td>
+                    <td>${coach.P}</td>
+                    <td>${coach.W}</td>
+                    <td>${coach.Pts}</td>
+                    <td>${coach.Avg}</td>
+                    <td>${coach.PF}</td>
+                    <td>${coach.PA}</td>
+                `;
+
+                ladderBody.appendChild(row);
+            });
         }
 
-        function renderInjuries() {
-            const teams = [...new Set(INJURIES.map(i => i.team))].sort();
+        // INIT INJURIES PAGE
+        function initInjuries() {
+            const summary = document.getElementById('injurySummary');
+            let seasonCount = 0, longtermCount = 0, shorttermCount = 0;
 
-            document.getElementById('injuryTeamFilter').innerHTML = '<option value="">All Teams</option>' +
-                teams.map(t => `<option value="${t}">${t}</option>`).join('');
-
-            filterInjuries();
-        }
-
-        function filterInjuries() {
-            const filter = document.getElementById('injuryTeamFilter').value;
-            const filtered = filter ? INJURIES.filter(i => i.team === filter) : INJURIES;
-
-            document.getElementById('injuryCount').textContent = filtered.length;
-
-            const grouped = {};
-            filtered.forEach(injury => {
-                if (!grouped[injury.team]) grouped[injury.team] = [];
-                grouped[injury.team].push(injury);
+            Object.values(injuries).forEach(team => {
+                team.forEach(inj => {
+                    if (inj.severity === 'season') seasonCount++;
+                    else if (inj.severity === 'longterm') longtermCount++;
+                    else shorttermCount++;
+                });
             });
 
-            const html = Object.keys(grouped).sort().map(team => `
-                <div class="injury-group">
-                    <div class="injury-group-title">${team}</div>
-                    ${grouped[team].map(inj => {
-                        const severity = getInjurySeverity(inj.ret);
-                        return `
-                            <div class="injury-item ${severity}">
-                                <div class="injury-details">
-                                    <div class="injury-name">${inj.name}</div>
-                                    <div class="injury-type">${inj.injury}</div>
-                                </div>
-                                <div class="injury-return">${inj.ret}</div>
-                            </div>
-                        `;
-                    }).join('')}
+            summary.innerHTML = `
+                <div class="injury-badge season">
+                    <div class="injury-dot"></div>
+                    <span>Season-ending: ${seasonCount}</span>
                 </div>
-            `).join('');
-            document.getElementById('injuriesContainer').innerHTML = html;
+                <div class="injury-badge longterm">
+                    <div class="injury-dot"></div>
+                    <span>Long-term: ${longtermCount}</span>
+                </div>
+                <div class="injury-badge shortterm">
+                    <div class="injury-dot"></div>
+                    <span>Short-term: ${shorttermCount}</span>
+                </div>
+            `;
+
+            renderInjuries('all');
+
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    renderInjuries(e.target.dataset.filter);
+                });
+            });
         }
 
-        // INIT
-        window.addEventListener('DOMContentLoaded', () => {
-            const coaches = LADDER.map(l => l.coach).sort();
-            document.getElementById('coachSelect').innerHTML = '<option value="">Select a coach...</option>' +
-                coaches.map(c => `<option value="${c}">${c}</option>`).join('');
+        function renderInjuries(filter) {
+            const injuriesContent = document.getElementById('injuriesContent');
+            injuriesContent.innerHTML = '';
 
-            renderHome();
-            renderLists();
-            renderFixture(1);
-            renderLadder();
-            renderInjuries();
+            Object.entries(injuries).forEach(([team, teamInjuries]) => {
+                let filtered = teamInjuries;
+                if (filter !== 'all') {
+                    filtered = teamInjuries.filter(inj => inj.severity === filter);
+                }
+
+                if (filtered.length === 0) return;
+
+                const section = document.createElement('div');
+                section.className = 'team-injury-section';
+
+                section.innerHTML = `
+                    <div class="team-injury-header">
+                        <div class="team-injury-name">${team}</div>
+                        <div class="injury-count">${filtered.length} injured</div>
+                    </div>
+                `;
+
+                filtered.forEach(inj => {
+                    const item = document.createElement('div');
+                    item.className = `injury-item ${inj.severity}`;
+                    item.innerHTML = `
+                        <div class="injury-player">${inj.player}</div>
+                        <div class="injury-status">${inj.status} -- ${inj.duration}</div>
+                    `;
+                    section.appendChild(item);
+                });
+
+                injuriesContent.appendChild(section);
+            });
+        }
+
+        // INIT DRAFT BOARD
+        function initDraft() {
+            const draftBoard = document.getElementById('draftBoard');
+            draftBoard.innerHTML = '';
+
+            // Header row
+            const headerCell = document.createElement('div');
+            headerCell.className = 'draft-cell draft-header';
+            headerCell.textContent = 'Coach';
+            draftBoard.appendChild(headerCell);
+
+            for (let i = 1; i <= 5; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'draft-cell draft-header';
+                cell.textContent = `Round ${i}`;
+                draftBoard.appendChild(cell);
+            }
+
+            // Draft order
+            const draftOrder = coaches.map(c => c.name);
+
+            coaches.forEach((coach, coachIdx) => {
+                const nameCell = document.createElement('div');
+                nameCell.className = 'draft-cell draft-coach-name';
+                nameCell.style.backgroundColor = coach.color;
+                nameCell.style.color = '#0f0f1e';
+                nameCell.style.fontWeight = '700';
+                nameCell.textContent = coach.name;
+                draftBoard.appendChild(nameCell);
+
+                const roster = rosters[coach.name] || [];
+
+                for (let round = 1; round <= 5; round++) {
+                    const cell = document.createElement('div');
+                    cell.className = `draft-cell draft-pick r${round}`;
+
+                    // Determine actual pick index based on snake draft
+                    let pickIdx;
+                    if (round % 2 === 1) {
+                        // Odd rounds: 1, 2, 3, 4, ... (ascending)
+                        pickIdx = coachIdx * 5 + (round - 1);
+                    } else {
+                        // Even rounds: reverse (16, 15, 14, ...)
+                        pickIdx = (15 - coachIdx) * 5 + (round - 1);
+                    }
+
+                    if (pickIdx < roster.length) {
+                        cell.textContent = roster[pickIdx].name;
+                    }
+
+                    draftBoard.appendChild(cell);
+                }
+            });
+        }
+
+        // PLAYER SEARCH
+        function initPlayerSearch() {
+            const searchOverlay = document.getElementById('searchOverlay');
+            const searchInput = document.getElementById('playerSearchInput');
+            const searchResults = document.getElementById('searchResults');
+            const searchBtn = document.getElementById('searchBtn');
+            const floatingSearchBtn = document.getElementById('floatingSearchBtn');
+            const closeBtn = document.getElementById('searchOverlayClose');
+
+            const openSearch = () => {
+                searchOverlay.classList.add('active');
+                searchInput.focus();
+            };
+
+            const closeSearch = () => {
+                searchOverlay.classList.remove('active');
+                searchInput.value = '';
+                searchResults.innerHTML = '';
+            };
+
+            searchBtn.addEventListener('click', openSearch);
+            floatingSearchBtn.addEventListener('click', openSearch);
+            closeBtn.addEventListener('click', closeSearch);
+
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase();
+                searchResults.innerHTML = '';
+
+                if (query.length < 1) return;
+
+                const results = allPlayers.filter(p =>
+                    p.name.toLowerCase().includes(query)
+                ).slice(0, 10);
+
+                if (results.length === 0) {
+                    searchResults.innerHTML = '<div class="no-results">No players found</div>';
+                    return;
+                }
+
+                results.forEach(player => {
+                    const item = document.createElement('div');
+                    item.className = 'search-result-item';
+                    item.innerHTML = `
+                        <div class="result-player-name">${player.name}</div>
+                        <div class="result-afl-team">${player.afl}</div>
+                        <div class="result-fantasy-coach">${player.coach}</div>
+                    `;
+                    searchResults.appendChild(item);
+                });
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && searchOverlay.classList.contains('active')) {
+                    closeSearch();
+                }
+            });
+        }
+
+        // NAVIGATION
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const tab = item.dataset.tab;
+                switchTab(tab);
+            });
         });
+
+        // INIT ALL
+        function initAll() {
+            initHome();
+            initLists();
+            initFixture();
+            initTeam();
+            initLadder();
+            initInjuries();
+            initDraft();
+            initPlayerSearch();
+        }
+
+        // Start
+        initAll();
     </script>
 </body>
 </html>
