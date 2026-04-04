@@ -19,6 +19,16 @@
             font-size: 16px;
             overflow-x: hidden;
             padding-bottom: 80px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.light-mode {
+            background-color: #f5f5f5;
+            color: #1a1a2e;
+        }
+
+        body.light-mode a {
+            color: #0088cc;
         }
 
         a {
@@ -34,6 +44,12 @@
             top: 0;
             z-index: 100;
             border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        body.light-mode header {
+            background-color: #ffffff;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
         }
 
         .header-content {
@@ -53,7 +69,13 @@
             background-clip: text;
         }
 
-        .search-btn {
+        .header-controls {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .theme-toggle, .search-btn {
             background: none;
             border: none;
             color: #00d4ff;
@@ -63,7 +85,7 @@
             transition: all 0.3s ease;
         }
 
-        .search-btn:hover {
+        .theme-toggle:hover, .search-btn:hover {
             transform: scale(1.1);
         }
 
@@ -104,6 +126,11 @@
             transition: all 0.3s ease;
         }
 
+        body.light-mode .card {
+            background-color: #ffffff;
+            border: 1px solid rgba(0, 212, 255, 0.15);
+        }
+
         .card:hover {
             border-color: rgba(0, 212, 255, 0.3);
             box-shadow: 0 8px 24px rgba(0, 212, 255, 0.1);
@@ -135,6 +162,10 @@
             margin-bottom: 1.5rem;
         }
 
+        body.light-mode .hero p {
+            color: #666;
+        }
+
         .form-guide-section {
             margin-bottom: 2rem;
         }
@@ -160,6 +191,11 @@
             transition: all 0.3s ease;
         }
 
+        body.light-mode .form-guide-item {
+            background-color: #f9f9f9;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
         .form-guide-item:hover {
             border-color: rgba(0, 212, 255, 0.3);
             transform: translateY(-2px);
@@ -175,6 +211,10 @@
             color: #b0b0c0;
             font-size: 0.85rem;
             margin-bottom: 0.5rem;
+        }
+
+        body.light-mode .team-name {
+            color: #777;
         }
 
         .form-results {
@@ -232,6 +272,10 @@
             font-weight: 600;
         }
 
+        body.light-mode .injury-badge {
+            background-color: #f9f9f9;
+        }
+
         .injury-badge.season {
             border-color: #ff6b6b;
             color: #ff6b6b;
@@ -271,6 +315,12 @@
             transition: all 0.3s ease;
         }
 
+        body.light-mode .search-input {
+            background-color: #ffffff;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            color: #1a1a2e;
+        }
+
         .search-input:focus {
             outline: none;
             border-color: #00d4ff;
@@ -290,6 +340,10 @@
             padding: 1.5rem;
             transition: all 0.3s ease;
             cursor: pointer;
+        }
+
+        body.light-mode .coach-card {
+            background-color: #ffffff;
         }
 
         .coach-card:hover {
@@ -312,6 +366,12 @@
             font-size: 1.1rem;
             font-weight: 700;
             margin-bottom: 0.25rem;
+            cursor: pointer;
+            color: #ffffff;
+        }
+
+        body.light-mode .coach-title {
+            color: #1a1a2e;
         }
 
         .team-tagline {
@@ -319,6 +379,10 @@
             font-size: 0.9rem;
             margin-bottom: 1rem;
             font-style: italic;
+        }
+
+        body.light-mode .team-tagline {
+            color: #777;
         }
 
         .coach-stats {
@@ -334,10 +398,18 @@
             border-radius: 6px;
         }
 
+        body.light-mode .stat-item {
+            background-color: rgba(0, 212, 255, 0.08);
+        }
+
         .stat-label {
             color: #b0b0c0;
             font-size: 0.8rem;
             margin-bottom: 0.25rem;
+        }
+
+        body.light-mode .stat-label {
+            color: #777;
         }
 
         .stat-value {
@@ -360,15 +432,27 @@
             letter-spacing: 0.5px;
         }
 
+        body.light-mode .players-list-title {
+            color: #777;
+        }
+
         .player-item {
             font-size: 0.85rem;
             padding: 0.25rem 0;
             color: #e0e0e0;
         }
 
+        body.light-mode .player-item {
+            color: #555;
+        }
+
         .afl-team {
             color: #b0b0c0;
             font-size: 0.75rem;
+        }
+
+        body.light-mode .afl-team {
+            color: #888;
         }
 
         /* Ladder Tab */
@@ -380,6 +464,10 @@
 
         .ladder-table thead {
             background-color: rgba(0, 212, 255, 0.1);
+        }
+
+        body.light-mode .ladder-table thead {
+            background-color: rgba(0, 212, 255, 0.08);
         }
 
         .ladder-table th {
@@ -396,8 +484,13 @@
             border-bottom: 1px solid rgba(0, 212, 255, 0.1);
         }
 
+        body.light-mode .ladder-table td {
+            border-bottom: 1px solid rgba(0, 212, 255, 0.08);
+        }
+
         .ladder-table tr:hover {
             background-color: rgba(0, 212, 255, 0.05);
+            cursor: pointer;
         }
 
         .rank-badge {
@@ -418,6 +511,7 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
+            cursor: pointer;
         }
 
         .coach-info-text {
@@ -432,6 +526,10 @@
         .team-name-ladder {
             color: #b0b0c0;
             font-size: 0.85rem;
+        }
+
+        body.light-mode .team-name-ladder {
+            color: #777;
         }
 
         .form-guide-dots {
@@ -480,6 +578,11 @@
             border-radius: 8px;
             padding: 1rem;
             transition: all 0.3s ease;
+        }
+
+        body.light-mode .match-card {
+            background-color: #ffffff;
+            border: 1px solid rgba(0, 212, 255, 0.1);
         }
 
         .match-card:hover {
@@ -571,6 +674,10 @@
             font-size: 0.85rem;
         }
 
+        body.light-mode .draft-cell {
+            background-color: #f9f9f9;
+        }
+
         .draft-header {
             background-color: rgba(0, 212, 255, 0.15);
             font-weight: 700;
@@ -584,6 +691,10 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+        }
+
+        body.light-mode .draft-coach-name {
+            background-color: #f9f9f9;
         }
 
         .draft-pick {
@@ -627,6 +738,328 @@
             font-style: italic;
         }
 
+        body.light-mode .draft-note {
+            background-color: rgba(0, 212, 255, 0.08);
+            color: #666;
+        }
+
+        /* Trade Tracker */
+        .trade-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .trade-card {
+            background-color: #1a1a2e;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 2.5rem;
+        }
+
+        body.light-mode .trade-card {
+            background-color: #ffffff;
+        }
+
+        .trade-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 2rem;
+            width: 12px;
+            height: 12px;
+            background-color: #00d4ff;
+            border-radius: 50%;
+            border: 3px solid #1a1a2e;
+        }
+
+        body.light-mode .trade-card::before {
+            border-color: #ffffff;
+        }
+
+        .trade-title {
+            font-weight: 700;
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .trade-detail {
+            color: #b0b0c0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        body.light-mode .trade-detail {
+            color: #666;
+        }
+
+        /* Stats Tab */
+        .stats-container {
+            margin-bottom: 2rem;
+        }
+
+        .chart-container {
+            background-color: #1a1a2e;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        body.light-mode .chart-container {
+            background-color: #ffffff;
+        }
+
+        #scoringChart {
+            max-width: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .chart-legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+        }
+
+        .legend-coach {
+            color: #b0b0c0;
+        }
+
+        body.light-mode .legend-coach {
+            color: #666;
+        }
+
+        /* Weekly Awards */
+        .awards-section {
+            margin-bottom: 2rem;
+        }
+
+        .awards-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #00d4ff;
+        }
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .award-card {
+            background-color: #1a1a2e;
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        body.light-mode .award-card {
+            background-color: #f9f9f9;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
+        .award-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #b0b0c0;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        body.light-mode .award-title {
+            color: #777;
+        }
+
+        .award-round {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            background-color: rgba(0, 212, 255, 0.05);
+            border-radius: 6px;
+            border-left: 3px solid #00d4ff;
+        }
+
+        body.light-mode .award-round {
+            background-color: rgba(0, 212, 255, 0.08);
+        }
+
+        .award-round-title {
+            font-size: 0.8rem;
+            color: #b0b0c0;
+            margin-bottom: 0.25rem;
+        }
+
+        body.light-mode .award-round-title {
+            color: #888;
+        }
+
+        .award-value {
+            font-weight: 700;
+            color: #00ff88;
+            font-size: 1rem;
+        }
+
+        .award-detail {
+            font-size: 0.85rem;
+            color: #b0b0c0;
+            margin-top: 0.25rem;
+        }
+
+        body.light-mode .award-detail {
+            color: #666;
+        }
+
+        /* Season Records */
+        .records-section {
+            margin-bottom: 2rem;
+        }
+
+        .records-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #00d4ff;
+        }
+
+        .records-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .record-item {
+            background-color: #1a1a2e;
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        body.light-mode .record-item {
+            background-color: #f9f9f9;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
+        .record-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #b0b0c0;
+            margin-bottom: 0.75rem;
+        }
+
+        body.light-mode .record-label {
+            color: #777;
+        }
+
+        .record-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #00ff88;
+            margin-bottom: 0.5rem;
+        }
+
+        .record-note {
+            font-size: 0.8rem;
+            color: #b0b0c0;
+        }
+
+        body.light-mode .record-note {
+            color: #666;
+        }
+
+        /* Power Rankings */
+        .power-rankings {
+            margin-bottom: 2rem;
+        }
+
+        .power-rankings h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #00d4ff;
+        }
+
+        .power-ranking-item {
+            background-color: #1a1a2e;
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        body.light-mode .power-ranking-item {
+            background-color: #f9f9f9;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
+        .pr-rank {
+            font-weight: 700;
+            color: #00d4ff;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .pr-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        .pr-info {
+            flex: 1;
+        }
+
+        .pr-name {
+            font-weight: 600;
+        }
+
+        .pr-team {
+            font-size: 0.85rem;
+            color: #b0b0c0;
+        }
+
+        body.light-mode .pr-team {
+            color: #777;
+        }
+
+        .pr-movement {
+            font-size: 1.25rem;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .pr-up {
+            color: #00ff88;
+        }
+
+        .pr-down {
+            color: #ff6b6b;
+        }
+
+        .pr-same {
+            color: #b0b0c0;
+        }
+
         /* Team Tab */
         .team-selector {
             display: grid;
@@ -646,6 +1079,10 @@
             color: #ffffff;
             font-family: 'Inter', sans-serif;
             font-size: 0.95rem;
+        }
+
+        body.light-mode .team-btn {
+            background-color: #ffffff;
         }
 
         .team-btn:hover {
@@ -690,6 +1127,10 @@
             font-size: 0.95rem;
         }
 
+        body.light-mode .team-record {
+            color: #666;
+        }
+
         .team-stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -705,12 +1146,21 @@
             text-align: center;
         }
 
+        body.light-mode .stat-card {
+            background-color: #f9f9f9;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
         .stat-card-label {
             color: #b0b0c0;
             font-size: 0.85rem;
             margin-bottom: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+        }
+
+        body.light-mode .stat-card-label {
+            color: #777;
         }
 
         .stat-card-value {
@@ -740,6 +1190,11 @@
             transition: all 0.3s ease;
         }
 
+        body.light-mode .player-card {
+            background-color: #f9f9f9;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
         .player-card:hover {
             border-color: rgba(0, 212, 255, 0.3);
             box-shadow: 0 4px 12px rgba(0, 212, 255, 0.1);
@@ -755,6 +1210,10 @@
             font-size: 0.85rem;
         }
 
+        body.light-mode .player-afl-team {
+            color: #777;
+        }
+
         .injury-section {
             margin-top: 1.5rem;
             padding-top: 1.5rem;
@@ -768,6 +1227,10 @@
             padding: 1rem;
             margin-bottom: 0.75rem;
             font-size: 0.9rem;
+        }
+
+        body.light-mode .injury-item {
+            background-color: #f9f9f9;
         }
 
         .injury-item.season {
@@ -787,9 +1250,17 @@
             color: #ffffff;
         }
 
+        body.light-mode .injury-player {
+            color: #1a1a2e;
+        }
+
         .injury-status {
             color: #b0b0c0;
             font-size: 0.85rem;
+        }
+
+        body.light-mode .injury-status {
+            color: #666;
         }
 
         /* Injuries Tab */
@@ -812,6 +1283,11 @@
             font-weight: 500;
         }
 
+        body.light-mode .filter-btn {
+            background-color: #f9f9f9;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
         .filter-btn:hover, .filter-btn.active {
             border-color: #00d4ff;
             background-color: rgba(0, 212, 255, 0.1);
@@ -829,6 +1305,10 @@
             border-left: 4px solid #00d4ff;
         }
 
+        body.light-mode .team-injury-header {
+            background-color: rgba(0, 212, 255, 0.08);
+        }
+
         .team-injury-name {
             font-weight: 700;
             font-size: 1.1rem;
@@ -839,6 +1319,243 @@
         .injury-count {
             color: #b0b0c0;
             font-size: 0.9rem;
+        }
+
+        body.light-mode .injury-count {
+            color: #666;
+        }
+
+        /* Coach Profile Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 300;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: #1a1a2e;
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+
+        body.light-mode .modal-content {
+            background-color: #ffffff;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: #00d4ff;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            transform: scale(1.1);
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-right: 2rem;
+        }
+
+        .modal-color-box {
+            width: 50px;
+            height: 50px;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+
+        .modal-title {
+            flex: 1;
+        }
+
+        .modal-title h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .modal-team {
+            color: #b0b0c0;
+            font-size: 0.9rem;
+        }
+
+        body.light-mode .modal-team {
+            color: #666;
+        }
+
+        .modal-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-section-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #00d4ff;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+        }
+
+        .modal-stat-item {
+            background-color: rgba(0, 212, 255, 0.05);
+            padding: 0.75rem;
+            border-radius: 6px;
+            border-left: 3px solid #00d4ff;
+        }
+
+        body.light-mode .modal-stat-item {
+            background-color: rgba(0, 212, 255, 0.08);
+        }
+
+        .modal-stat-label {
+            font-size: 0.8rem;
+            color: #b0b0c0;
+            margin-bottom: 0.25rem;
+        }
+
+        body.light-mode .modal-stat-label {
+            color: #777;
+        }
+
+        .modal-stat-value {
+            font-weight: 700;
+            color: #00ff88;
+        }
+
+        .modal-roster {
+            background-color: rgba(0, 212, 255, 0.05);
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+
+        body.light-mode .modal-roster {
+            background-color: rgba(0, 212, 255, 0.08);
+        }
+
+        .modal-player {
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .modal-player:not(:last-child) {
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-player-name {
+            font-weight: 600;
+            display: block;
+        }
+
+        .modal-player-afl {
+            font-size: 0.8rem;
+            color: #b0b0c0;
+        }
+
+        body.light-mode .modal-player-afl {
+            color: #777;
+        }
+
+        .modal-form {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        .modal-form-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .modal-form-dot.w {
+            background-color: #00ff88;
+            color: #0f0f1e;
+        }
+
+        .modal-form-dot.l {
+            background-color: #ff6b6b;
+            color: #ffffff;
+        }
+
+        .modal-scores {
+            background-color: rgba(0, 212, 255, 0.05);
+            padding: 1rem;
+            border-radius: 6px;
+        }
+
+        body.light-mode .modal-scores {
+            background-color: rgba(0, 212, 255, 0.08);
+        }
+
+        .modal-score-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .modal-score-item:not(:last-child) {
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        .modal-score-round {
+            color: #b0b0c0;
+        }
+
+        body.light-mode .modal-score-round {
+            color: #777;
+        }
+
+        .modal-score-value {
+            color: #00ff88;
+            font-weight: 700;
         }
 
         /* Bottom Navigation */
@@ -854,6 +1571,12 @@
             align-items: center;
             padding: 0.5rem 0;
             z-index: 50;
+            transition: background-color 0.3s ease;
+        }
+
+        body.light-mode nav {
+            background-color: #ffffff;
+            border-top: 1px solid rgba(0, 212, 255, 0.1);
         }
 
         .nav-item {
@@ -925,6 +1648,10 @@
             animation: fadeIn 0.3s ease;
         }
 
+        body.light-mode .search-overlay {
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
         .search-overlay.active {
             display: flex;
             flex-direction: column;
@@ -968,6 +1695,12 @@
             margin-bottom: 1.5rem;
         }
 
+        body.light-mode .search-overlay-input {
+            background-color: #ffffff;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            color: #1a1a2e;
+        }
+
         .search-overlay-input:focus {
             outline: none;
             border-color: #00d4ff;
@@ -989,6 +1722,11 @@
             transition: all 0.3s ease;
         }
 
+        body.light-mode .search-result-item {
+            background-color: #ffffff;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
         .search-result-item:hover {
             border-color: rgba(0, 212, 255, 0.3);
             transform: translateX(4px);
@@ -1007,6 +1745,10 @@
             margin-bottom: 0.5rem;
         }
 
+        body.light-mode .result-afl-team {
+            color: #777;
+        }
+
         .result-fantasy-coach {
             background-color: rgba(0, 212, 255, 0.1);
             color: #00d4ff;
@@ -1021,6 +1763,10 @@
             text-align: center;
             color: #b0b0c0;
             padding: 2rem;
+        }
+
+        body.light-mode .no-results {
+            color: #777;
         }
 
         /* Toast Notification */
@@ -1038,6 +1784,11 @@
             z-index: 150;
             animation: slideUp 0.3s ease, slideDown 0.3s ease 2.7s;
             pointer-events: none;
+        }
+
+        body.light-mode .toast {
+            background-color: #ffffff;
+            border: 1px solid rgba(0, 212, 255, 0.2);
         }
 
         @keyframes slideUp {
@@ -1113,10 +1864,24 @@
             .nav-item {
                 min-width: 50px;
                 padding: 0.5rem 0.75rem;
+                font-size: 0.65rem;
             }
 
             .nav-icon {
                 font-size: 1.25rem;
+            }
+
+            .modal-content {
+                margin: 1rem;
+                max-width: calc(100% - 2rem);
+            }
+
+            .awards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .records-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -1148,14 +1913,22 @@
             .coach-stats {
                 grid-template-columns: 1fr;
             }
+
+            #scoringChart {
+                height: auto;
+                max-width: 100%;
+            }
         }
     </style>
 </head>
 <body>
     <header>
         <div class="header-content">
-            <h1>â¡ Superleague Yeah</h1>
-            <button class="search-btn" id="searchBtn">ð</button>
+            <h1>⚡ Superleague Yeah</h1>
+            <div class="header-controls">
+                <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">🌙</button>
+                <button class="search-btn" id="searchBtn">🔍</button>
+            </div>
         </div>
     </header>
 
@@ -1234,16 +2007,6 @@
             </div>
         </div>
 
-        <!-- TEAM TAB -->
-        <div class="container team-container">
-            <div class="team-selector" id="teamSelector">
-                <!-- Populated by JS -->
-            </div>
-            <div id="teamDetailContent">
-                <!-- Populated by JS -->
-            </div>
-        </div>
-
         <!-- LADDER TAB -->
         <div class="container ladder-container">
             <div class="card">
@@ -1266,6 +2029,51 @@
                         <!-- Populated by JS -->
                     </tbody>
                 </table>
+            </div>
+        </div>
+
+        <!-- STATS TAB -->
+        <div class="container stats-container">
+            <div class="stats-container">
+                <div class="card chart-container">
+                    <h3>Round-by-Round Scoring</h3>
+                    <canvas id="scoringChart" width="800" height="400"></canvas>
+                    <div class="chart-legend" id="chartLegend"></div>
+                </div>
+
+                <!-- Weekly Awards -->
+                <div class="card awards-section">
+                    <h3>Weekly Awards</h3>
+                    <div class="awards-grid" id="awardsGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Season Records -->
+                <div class="card records-section">
+                    <h3>Season Records</h3>
+                    <div class="records-grid" id="recordsGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Power Rankings -->
+                <div class="card power-rankings">
+                    <h3>Power Rankings</h3>
+                    <div id="powerRankings">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TEAM TAB -->
+        <div class="container team-container">
+            <div class="team-selector" id="teamSelector">
+                <!-- Populated by JS -->
+            </div>
+            <div id="teamDetailContent">
+                <!-- Populated by JS -->
             </div>
         </div>
 
@@ -1298,8 +2106,74 @@
                     <!-- Populated by JS -->
                 </div>
             </div>
+
+            <div class="card">
+                <h3>Trade History</h3>
+                <div class="trade-timeline" id="tradeTimeline">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
         </div>
     </main>
+
+    <!-- Coach Profile Modal -->
+    <div class="modal" id="coachModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-header">
+                <div class="modal-color-box" id="modalColorBox"></div>
+                <div class="modal-title">
+                    <h2 id="modalCoachName"></h2>
+                    <div class="modal-team" id="modalTeamName"></div>
+                </div>
+            </div>
+
+            <div class="modal-section">
+                <div class="modal-section-title">Record & Stats</div>
+                <div class="modal-stats">
+                    <div class="modal-stat-item">
+                        <div class="modal-stat-label">Record</div>
+                        <div class="modal-stat-value" id="modalRecord"></div>
+                    </div>
+                    <div class="modal-stat-item">
+                        <div class="modal-stat-label">Wins</div>
+                        <div class="modal-stat-value" id="modalWins"></div>
+                    </div>
+                    <div class="modal-stat-item">
+                        <div class="modal-stat-label">Average</div>
+                        <div class="modal-stat-value" id="modalAverage"></div>
+                    </div>
+                    <div class="modal-stat-item">
+                        <div class="modal-stat-label">Points</div>
+                        <div class="modal-stat-value" id="modalPoints"></div>
+                    </div>
+                    <div class="modal-stat-item">
+                        <div class="modal-stat-label">PF</div>
+                        <div class="modal-stat-value" id="modalPF"></div>
+                    </div>
+                    <div class="modal-stat-item">
+                        <div class="modal-stat-label">PA</div>
+                        <div class="modal-stat-value" id="modalPA"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-section">
+                <div class="modal-section-title">Form Guide</div>
+                <div class="modal-form" id="modalForm"></div>
+            </div>
+
+            <div class="modal-section">
+                <div class="modal-section-title">Roster</div>
+                <div class="modal-roster" id="modalRoster"></div>
+            </div>
+
+            <div class="modal-section">
+                <div class="modal-section-title">Round-by-Round Scores</div>
+                <div class="modal-scores" id="modalScores"></div>
+            </div>
+        </div>
+    </div>
 
     <!-- Search Overlay -->
     <div class="search-overlay" id="searchOverlay">
@@ -1314,35 +2188,59 @@
     <!-- Bottom Navigation -->
     <nav>
         <div class="nav-item active" data-tab="home">
-            <div class="nav-icon">ð </div>
+            <div class="nav-icon">🏠</div>
             <div>Home</div>
         </div>
         <div class="nav-item" data-tab="lists">
-            <div class="nav-icon">ð</div>
+            <div class="nav-icon">📋</div>
             <div>Lists</div>
         </div>
         <div class="nav-item" data-tab="fixture">
-            <div class="nav-icon">ð</div>
+            <div class="nav-icon">📅</div>
             <div>Fixture</div>
         </div>
-        <div class="nav-item" data-tab="team">
-            <div class="nav-icon">ð¥</div>
-            <div>Team</div>
-        </div>
         <div class="nav-item" data-tab="ladder">
-            <div class="nav-icon">ð</div>
+            <div class="nav-icon">🏆</div>
             <div>Ladder</div>
         </div>
+        <div class="nav-item" data-tab="stats">
+            <div class="nav-icon">📊</div>
+            <div>Stats</div>
+        </div>
+        <div class="nav-item" data-tab="team">
+            <div class="nav-icon">👥</div>
+            <div>Team</div>
+        </div>
         <div class="nav-item" data-tab="injuries">
-            <div class="nav-icon">ð©¹</div>
+            <div class="nav-icon">🩹</div>
             <div>Injuries</div>
+        </div>
+        <div class="nav-item" data-tab="draft">
+            <div class="nav-icon">📝</div>
+            <div>Draft</div>
         </div>
     </nav>
 
     <!-- Floating Search Button -->
-    <button class="floating-search" id="floatingSearchBtn">ð</button>
+    <button class="floating-search" id="floatingSearchBtn">🔍</button>
 
     <script>
+        // THEME MANAGEMENT
+        let isDarkMode = true;
+
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            if (isDarkMode) {
+                document.body.classList.remove('light-mode');
+                document.getElementById('themeToggle').textContent = '🌙';
+            } else {
+                document.body.classList.add('light-mode');
+                document.getElementById('themeToggle').textContent = '☀️';
+            }
+        }
+
+        document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+
         // DATA
         const coaches = [
             { rank: 1, name: "Josh", team: "Once Bitten", P: 3, W: 3, Pts: 12, Avg: 200.3, PF: 601, PA: 414.5, color: "#ff6b6b", form: ["W", "W", "W"] },
@@ -1551,6 +2449,13 @@
             ]
         };
 
+        const trades = [
+            { from: "Cammy", to: "Andy", gave: "Max Gawn", received: "James Sicily", description: "Cammy traded Max Gawn to Andy for James Sicily" },
+            { from: "Dane", to: "Josh", gave: "Sam Walsh", received: "Tom Stewart", description: "Dane traded Sam Walsh to Josh for Tom Stewart" },
+            { from: "Andy", to: "Tanka", gave: "James Sicily", received: "Darcy Cameron", description: "Andy traded James Sicily to Tanka for Darcy Cameron" },
+            { from: "Josh", to: "Cammy", gave: "Lachie Neale", received: "Max Gawn", description: "Josh traded Lachie Neale to Cammy for Max Gawn" }
+        ];
+
         const tips = [
             "Josh's Once Bitten leads the league with a 200.3 average -- clinical!",
             "Tanka, Josh, and Cammy are all undefeated at 3-0 after three rounds",
@@ -1583,6 +2488,7 @@
                 'fixture': 'fixture-container',
                 'team': 'team-container',
                 'ladder': 'ladder-container',
+                'stats': 'stats-container',
                 'injuries': 'injuries-container',
                 'draft': 'draft-container'
             };
@@ -1645,6 +2551,7 @@
                     </div>
                 `;
 
+                card.addEventListener('click', () => showCoachModal(coach));
                 coachesGrid.appendChild(card);
             });
 
@@ -1693,7 +2600,7 @@
                             <div class="team-name-match">${match.team2}</div>
                             <div class="score">${match.score2}</div>
                         </div>
-                        ${match.live ? '<div class="match-status">LIVE <span class="live-badge">â</span></div>' : ''}
+                        ${match.live ? '<div class="match-status">LIVE <span class="live-badge">●</span></div>' : ''}
                     `;
 
                     grid.appendChild(card);
@@ -1701,6 +2608,244 @@
 
                 section.appendChild(grid);
                 fixtureContent.appendChild(section);
+            });
+        }
+
+        // INIT LADDER PAGE
+        function initLadder() {
+            const ladderBody = document.getElementById('ladderBody');
+            ladderBody.innerHTML = '';
+
+            coaches.forEach(coach => {
+                const row = document.createElement('tr');
+                const formDots = coach.form.map(f =>
+                    `<div class="form-dot ${f === 'W' ? 'w' : 'l'}"></div>`
+                ).join('');
+
+                row.innerHTML = `
+                    <td><div class="rank-badge">${coach.rank}</div></td>
+                    <td>
+                        <div class="coach-info">
+                            <div style="width: 12px; height: 12px; background-color: ${coach.color}; border-radius: 3px;"></div>
+                            <div class="coach-info-text">
+                                <div class="coach-name-ladder">${coach.name}</div>
+                                <div class="team-name-ladder">${coach.team}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td><div class="form-guide-dots">${formDots}</div></td>
+                    <td>${coach.P}</td>
+                    <td>${coach.W}</td>
+                    <td>${coach.Pts}</td>
+                    <td>${coach.Avg}</td>
+                    <td>${coach.PF}</td>
+                    <td>${coach.PA}</td>
+                `;
+
+                row.addEventListener('click', () => showCoachModal(coach));
+                ladderBody.appendChild(row);
+            });
+        }
+
+        // INIT STATS PAGE
+        function initStats() {
+            drawScoringChart();
+            initWeeklyAwards();
+            initSeasonRecords();
+            initPowerRankings();
+        }
+
+        function drawScoringChart() {
+            const canvas = document.getElementById('scoringChart');
+            const ctx = canvas.getContext('2d');
+            const topCoaches = coaches.slice(0, 8);
+
+            const roundData = {
+                1: { Tanka: 179, Fraser: 201.5, Andy: 208.5, Cammy: 159.5, Josh: 193.5, 'A Smith': 221, Dane: 175, Flags: 171 },
+                2: { Flags: 169.5, Age: 153.5, Cammy: 207, Josh: 206.5, 'A Smith': 216, Jack: 173, Tanka: 162, Isaac: 161 },
+                3: { Cammy: 159.5, Tanka: 169, Josh: 201 }
+            };
+
+            const width = canvas.width;
+            const height = canvas.height;
+            const padding = 60;
+            const plotWidth = width - padding * 2;
+            const plotHeight = height - padding * 2;
+
+            ctx.fillStyle = isDarkMode ? '#0f0f1e' : '#f5f5f5';
+            ctx.fillRect(0, 0, width, height);
+
+            ctx.strokeStyle = isDarkMode ? 'rgba(0, 212, 255, 0.2)' : 'rgba(0, 212, 255, 0.1)';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(padding, padding, plotWidth, plotHeight);
+
+            const maxScore = 230;
+            const rounds = [1, 2, 3];
+
+            ctx.fillStyle = isDarkMode ? '#b0b0c0' : '#777';
+            ctx.font = '12px Inter';
+            ctx.textAlign = 'center';
+
+            rounds.forEach((round, idx) => {
+                const x = padding + (idx + 0.5) * (plotWidth / 3);
+                ctx.fillText(`Round ${round}`, x, height - 30);
+            });
+
+            ctx.textAlign = 'right';
+            for (let i = 0; i <= 5; i++) {
+                const y = padding + plotHeight - (i * plotHeight / 5);
+                const value = Math.round((i * maxScore) / 5);
+                ctx.fillText(value, padding - 10, y + 4);
+            }
+
+            topCoaches.forEach((coach, coachIdx) => {
+                ctx.strokeStyle = coach.color;
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+
+                let first = true;
+                rounds.forEach((round, roundIdx) => {
+                    const score = roundData[round][coach.name] || 0;
+                    if (score === 0) return;
+
+                    const x = padding + (roundIdx + 0.5) * (plotWidth / 3);
+                    const y = padding + plotHeight - (score / maxScore) * plotHeight;
+
+                    if (first) {
+                        ctx.moveTo(x, y);
+                        first = false;
+                    } else {
+                        ctx.lineTo(x, y);
+                    }
+                });
+
+                ctx.stroke();
+            });
+
+            const legend = document.getElementById('chartLegend');
+            legend.innerHTML = '';
+            topCoaches.forEach(coach => {
+                const item = document.createElement('div');
+                item.className = 'legend-item';
+                item.innerHTML = `
+                    <div class="legend-color" style="background-color: ${coach.color}"></div>
+                    <span class="legend-coach">${coach.name}</span>
+                `;
+                legend.appendChild(item);
+            });
+        }
+
+        function initWeeklyAwards() {
+            const awardsGrid = document.getElementById('awardsGrid');
+            awardsGrid.innerHTML = '';
+
+            const rounds = [1, 2, 3];
+
+            rounds.forEach(round => {
+                const roundMatches = Object.values(matches).flat().slice(0, 8 * round);
+                const roundMatchesForRound = Object.values(matches)[round - 1] || [];
+
+                const roundData = {
+                    1: { Tanka: 179, Fraser: 201.5, Andy: 208.5, Cammy: 159.5, Josh: 193.5, 'A Smith': 221, Dane: 175, Flags: 171 },
+                    2: { Flags: 169.5, Age: 153.5, Cammy: 207, Josh: 206.5, 'A Smith': 216, Jack: 173, Tanka: 162, Isaac: 161 },
+                    3: { Cammy: 159.5, Tanka: 169, Josh: 201 }
+                };
+
+                const mvp = Object.entries(roundData[round] || {}).reduce((a, b) => a[1] > b[1] ? a : b);
+                const blowouts = roundMatchesForRound.map(m => ({ margin: Math.abs(m.score1 - m.score2), match: m }));
+                const biggest = blowouts.reduce((a, b) => a.margin > b.margin ? a : b, { margin: 0 });
+                const closest = blowouts.filter(b => b.margin > 0).reduce((a, b) => a.margin < b.margin ? a : b, { margin: 999 });
+
+                const card = document.createElement('div');
+                card.className = 'award-card';
+                card.innerHTML = `
+                    <div class="award-title">Round ${round} Awards</div>
+                    <div class="award-round">
+                        <div class="award-round-title">MVP</div>
+                        <div class="award-value">${mvp[0]}</div>
+                        <div class="award-detail">${mvp[1]} pts</div>
+                    </div>
+                    <div class="award-round">
+                        <div class="award-round-title">Biggest Blowout</div>
+                        <div class="award-value">${biggest.match ? `${biggest.match.team1} vs ${biggest.match.team2}` : 'N/A'}</div>
+                        <div class="award-detail">${biggest.margin} pts margin</div>
+                    </div>
+                    <div class="award-round">
+                        <div class="award-round-title">Closest Game</div>
+                        <div class="award-value">${closest.match ? `${closest.match.team1} vs ${closest.match.team2}` : 'N/A'}</div>
+                        <div class="award-detail">${closest.margin} pts margin</div>
+                    </div>
+                `;
+                awardsGrid.appendChild(card);
+            });
+        }
+
+        function initSeasonRecords() {
+            const recordsGrid = document.getElementById('recordsGrid');
+            recordsGrid.innerHTML = '';
+
+            const allScores = [];
+            Object.values(matches).forEach(round => {
+                round.forEach(match => {
+                    allScores.push({ coach: match.team1, score: match.score1, round: Object.keys(matches).indexOf(Object.keys(matches).find(k => matches[k].includes(match))) + 1 });
+                    allScores.push({ coach: match.team2, score: match.score2, round: Object.keys(matches).indexOf(Object.keys(matches).find(k => matches[k].includes(match))) + 1 });
+                });
+            });
+
+            const highest = allScores.reduce((a, b) => a.score > b.score ? a : b);
+            const lowest = allScores.reduce((a, b) => a.score < b.score ? a : b);
+
+            const records = [
+                { label: 'Highest Score', value: highest.score, note: `${highest.coach} (Round ${highest.round})` },
+                { label: 'Lowest Score', value: lowest.score, note: `${lowest.coach} (Round ${lowest.round})` },
+                { label: 'Longest Win Streak', value: 3, note: 'Josh, Cammy, Tanka' },
+                { label: 'Most Total Points', value: 601, note: 'Josh (601 PF)' }
+            ];
+
+            records.forEach(record => {
+                const item = document.createElement('div');
+                item.className = 'record-item';
+                item.innerHTML = `
+                    <div class="record-label">${record.label}</div>
+                    <div class="record-value">${record.value}</div>
+                    <div class="record-note">${record.note}</div>
+                `;
+                recordsGrid.appendChild(item);
+            });
+        }
+
+        function initPowerRankings() {
+            const powerRankingsDiv = document.getElementById('powerRankings');
+            powerRankingsDiv.innerHTML = '';
+
+            const rankings = coaches.map(coach => {
+                const recentForm = coach.form;
+                const formScore = (recentForm[0] === 'W' ? 3 : 1) + (recentForm[1] === 'W' ? 2 : 0) + (recentForm[2] === 'W' ? 1 : 0);
+                const winPct = coach.W / coach.P;
+                const power = formScore * 100 + winPct * 50 + (coach.Avg / 200) * 30;
+                return { ...coach, power };
+            }).sort((a, b) => b.power - a.power);
+
+            rankings.forEach((coach, idx) => {
+                const ladderPos = coach.rank;
+                const powerPos = idx + 1;
+                let movement = '';
+                if (powerPos < ladderPos) movement = '↑';
+                else if (powerPos > ladderPos) movement = '↓';
+                else movement = '—';
+
+                const item = document.createElement('div');
+                item.className = 'power-ranking-item';
+                item.innerHTML = `
+                    <div class="pr-rank">${powerPos}</div>
+                    <div class="pr-color" style="background-color: ${coach.color}"></div>
+                    <div class="pr-info">
+                        <div class="pr-name">${coach.name}</div>
+                        <div class="pr-team">${coach.team}</div>
+                    </div>
+                    <div class="pr-movement ${movement === '↑' ? 'pr-up' : movement === '↓' ? 'pr-down' : 'pr-same'}">${movement}</div>
+                `;
+                powerRankingsDiv.appendChild(item);
             });
         }
 
@@ -1786,41 +2931,6 @@
                 firstBtn.classList.add('active');
                 document.querySelector('[data-team="Josh"]').classList.add('active');
             }
-        }
-
-        // INIT LADDER PAGE
-        function initLadder() {
-            const ladderBody = document.getElementById('ladderBody');
-            ladderBody.innerHTML = '';
-
-            coaches.forEach(coach => {
-                const row = document.createElement('tr');
-                const formDots = coach.form.map(f =>
-                    `<div class="form-dot ${f === 'W' ? 'w' : 'l'}"></div>`
-                ).join('');
-
-                row.innerHTML = `
-                    <td><div class="rank-badge">${coach.rank}</div></td>
-                    <td>
-                        <div class="coach-info">
-                            <div style="width: 12px; height: 12px; background-color: ${coach.color}; border-radius: 3px;"></div>
-                            <div class="coach-info-text">
-                                <div class="coach-name-ladder">${coach.name}</div>
-                                <div class="team-name-ladder">${coach.team}</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td><div class="form-guide-dots">${formDots}</div></td>
-                    <td>${coach.P}</td>
-                    <td>${coach.W}</td>
-                    <td>${coach.Pts}</td>
-                    <td>${coach.Avg}</td>
-                    <td>${coach.PF}</td>
-                    <td>${coach.PA}</td>
-                `;
-
-                ladderBody.appendChild(row);
-            });
         }
 
         // INIT INJURIES PAGE
@@ -1916,7 +3026,6 @@
                 draftBoard.appendChild(cell);
             }
 
-            // Draft order
             const draftOrder = coaches.map(c => c.name);
 
             coaches.forEach((coach, coachIdx) => {
@@ -1934,13 +3043,10 @@
                     const cell = document.createElement('div');
                     cell.className = `draft-cell draft-pick r${round}`;
 
-                    // Determine actual pick index based on snake draft
                     let pickIdx;
                     if (round % 2 === 1) {
-                        // Odd rounds: 1, 2, 3, 4, ... (ascending)
                         pickIdx = coachIdx * 5 + (round - 1);
                     } else {
-                        // Even rounds: reverse (16, 15, 14, ...)
                         pickIdx = (15 - coachIdx) * 5 + (round - 1);
                     }
 
@@ -1951,7 +3057,68 @@
                     draftBoard.appendChild(cell);
                 }
             });
+
+            // Trade Timeline
+            const tradeTimeline = document.getElementById('tradeTimeline');
+            tradeTimeline.innerHTML = '';
+
+            trades.forEach(trade => {
+                const card = document.createElement('div');
+                card.className = 'trade-card';
+                card.innerHTML = `
+                    <div class="trade-title">${trade.from} ↔ ${trade.to}</div>
+                    <div class="trade-detail">
+                        <strong>${trade.from}</strong> gave: ${trade.gave}<br>
+                        <strong>${trade.to}</strong> received: ${trade.received}
+                    </div>
+                `;
+                tradeTimeline.appendChild(card);
+            });
         }
+
+        // COACH MODAL
+        function showCoachModal(coach) {
+            const modal = document.getElementById('coachModal');
+            document.getElementById('modalColorBox').style.backgroundColor = coach.color;
+            document.getElementById('modalCoachName').textContent = coach.name;
+            document.getElementById('modalTeamName').textContent = `"${coach.team}"`;
+            document.getElementById('modalRecord').textContent = `${coach.W}-${coach.P - coach.W}`;
+            document.getElementById('modalWins').textContent = coach.W;
+            document.getElementById('modalAverage').textContent = coach.Avg;
+            document.getElementById('modalPoints').textContent = coach.Pts;
+            document.getElementById('modalPF').textContent = coach.PF;
+            document.getElementById('modalPA').textContent = coach.PA;
+
+            const formHTML = coach.form.map(f => `<div class="modal-form-dot ${f === 'W' ? 'w' : 'l'}">${f}</div>`).join('');
+            document.getElementById('modalForm').innerHTML = formHTML;
+
+            const roster = rosters[coach.name] || [];
+            const rosterHTML = roster.map(p => `<div class="modal-player"><span class="modal-player-name">${p.name}</span><span class="modal-player-afl">${p.afl}</span></div>`).join('');
+            document.getElementById('modalRoster').innerHTML = rosterHTML;
+
+            const roundScores = {
+                1: { Josh: 193.5, Cammy: 159.5, Tanka: 179, 'A Smith': 221, Dane: 175, Andy: 208.5, Flags: 171, Age: 126, Libba: 198.5, Isaac: 192.5, Fraser: 201.5, MDT: 129, Jack: 116, Cram: 138, Joe: 143, Georgrick: 113 },
+                2: { Josh: 206.5, Cammy: 207, Tanka: 162, 'A Smith': 216, Dane: 146, Andy: 136, Flags: 169.5, Age: 153.5, Libba: 149.5, Isaac: 161, Fraser: 112.5, MDT: 175.5, Jack: 173, Cram: 159, Joe: 106, Georgrick: 0 },
+                3: { Josh: 201, Cammy: 159.5, Tanka: 169 }
+            };
+
+            const scoresHTML = Object.entries(roundScores).map(([round, scores]) => {
+                return `<div class="modal-score-item"><span class="modal-score-round">Round ${round}</span><span class="modal-score-value">${scores[coach.name] || 'N/A'}</span></div>`;
+            }).join('');
+            document.getElementById('modalScores').innerHTML = scoresHTML;
+
+            modal.classList.add('active');
+        }
+
+        document.getElementById('modalClose').addEventListener('click', () => {
+            document.getElementById('coachModal').classList.remove('active');
+        });
+
+        document.getElementById('coachModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('coachModal')) {
+                document.getElementById('coachModal').classList.remove('active');
+            }
+        });
 
         // PLAYER SEARCH
         function initPlayerSearch() {
@@ -2024,8 +3191,9 @@
             initHome();
             initLists();
             initFixture();
-            initTeam();
             initLadder();
+            initStats();
+            initTeam();
             initInjuries();
             initDraft();
             initPlayerSearch();
