@@ -2242,7 +2242,7 @@
         document.getElementById('themeToggle').addEventListener('click', toggleTheme);
 
         // DATA
-        const coaches = [
+        let coaches = [
             { rank: 1, name: "Josh", team: "Once Bitten", P: 3, W: 3, Pts: 12, Avg: 200.3, PF: 601, PA: 414.5, color: "#ff6b6b", form: ["W", "W", "W"] },
             { rank: 2, name: "Cammy", team: "Never Won a Premiership", P: 3, W: 3, Pts: 12, Avg: 175.3, PF: 526, PA: 369.5, color: "#4ecdc4", form: ["W", "W", "W"] },
             { rank: 3, name: "Tanka", team: "I beat Dane last year FC", P: 3, W: 3, Pts: 12, Avg: 170, PF: 510, PA: 433.5, color: "#45b7d1", form: ["W", "W", "W"] },
@@ -2261,7 +2261,7 @@
             { rank: 16, name: "Georgrick", team: "Team 1016", P: 3, W: 0, Pts: 0, Avg: 111, PF: 333, PA: 623, color: "#c44569", form: ["L", "L", "L"] }
         ];
 
-        const rosters = {
+        let rosters = {
             "Cammy": [
                 { name: "Max Gawn", afl: "Melbourne" },
                 { name: "Jake Waterman", afl: "West Coast Eagles" },
@@ -2654,7 +2654,7 @@
             });
         });
 
-        const matches = {
+        let matches = {
             "Round 1": [
                 { team1: "Tanka", score1: 179, team2: "Cram", score2: 138, matchName: "" },
                 { team1: "Isaac", score1: 192.5, team2: "Fraser", score2: 201.5, matchName: "" },
@@ -2697,7 +2697,7 @@
             ]
         };
 
-        const injuries = {
+        let injuries = {
             "Adelaide Crows": [
                 { player: "Callum Ah Chee", status: "Hamstring", duration: "5-7wks", severity: "longterm" },
                 { player: "Daniel Curtin", status: "Knee", duration: "5-7wks", severity: "longterm" },
@@ -3504,8 +3504,99 @@
             initPlayerSearch();
         }
 
-        // Start
-        initAll();
+        // Start — hydrate from sly-api, then render. Fallback to hardcoded if API down.
+        const SLY_API = "https://sly-api.pgallivan.workers.dev";
+
+        async function loadLiveData() {
+            const ctrl = new AbortController();
+            const timeout = setTimeout(() => ctrl.abort(), 4000);
+            try {
+                const [ladderR, scoresR, fixturesR, roundsR] = await Promise.all([
+                    fetch(SLY_API + "/api/ladder",       { signal: ctrl.signal }),
+                    fetch(SLY_API + "/api/scores",       { signal: ctrl.signal }),
+                    fetch(SLY_API + "/api/sly-fixtures", { signal: ctrl.signal }),
+                    fetch(SLY_API + "/api/rounds",       { signal: ctrl.signal })
+                ]);
+                clearTimeout(timeout);
+                const [ladder, scores, fixturesData, rounds] = await Promise.all([
+                    ladderR.json(), scoresR.json(), fixturesR.json(), roundsR.json()
+                ]);
+
+                // ----- coaches (Ladder) -----
+                // Map keep the existing field names the renderers use (rank, name, team, P, W, Pts, Avg, PF, PA, color, form).
+                const coachesById = {};
+                ladder.forEach(c => coachesById[c.coach_id] = c);
+
+                // Form (last 3 rounds) per coach from /api/scores
+                const formByCoach = {};
+                for (const c of ladder) formByCoach[c.coach_id] = [];
+                const sortedScores = [...scores].sort((a,b) => a.round_number - b.round_number);
+                for (const s of sortedScores) {
+                    if (formByCoach[s.coach_id]) formByCoach[s.coach_id].push(s.result || "L");
+                }
+
+                // PA = points against = sum of opponent's points each round
+                const paByCoach = {};
+                for (const c of ladder) paByCoach[c.coach_id] = 0;
+                const scoreByRoundCoach = {};
+                for (const s of scores) {
+                    scoreByRoundCoach[s.round_number] = scoreByRoundCoach[s.round_number] || {};
+                    scoreByRoundCoach[s.round_number][s.coach_id] = s.points;
+                }
+                for (const s of scores) {
+                    if (s.opponent_id != null && scoreByRoundCoach[s.round_number]?.[s.opponent_id] != null) {
+                        paByCoach[s.coach_id] += scoreByRoundCoach[s.round_number][s.opponent_id];
+                    }
+                }
+
+                // Build coaches sorted by points desc, then avg desc, then PF desc
+                const liveCoaches = ladder.map(c => ({
+                    coach_id: c.coach_id,
+                    name: c.name,
+                    team: c.team_name,
+                    color: c.color,
+                    P: c.played, W: c.wins,
+                    Pts: c.points,
+                    Avg: c.avg_score,
+                    PF: c.points_for,
+                    PA: Math.round((paByCoach[c.coach_id] || 0) * 10) / 10,
+                    form: (formByCoach[c.coach_id] || []).slice(-3).map(r => r === "W" ? "W" : "L")
+                }));
+                liveCoaches.sort((a,b) => b.Pts - a.Pts || b.Avg - a.Avg || b.PF - a.PF);
+                liveCoaches.forEach((c,i) => c.rank = i + 1);
+                coaches = liveCoaches;
+
+                // ----- matches (Fixture tab) -----
+                // Group fixtures by round_number, attach scores; key as "Round N" (or "Round N (LIVE)").
+                const fixByRound = {};
+                for (const f of fixturesData) {
+                    (fixByRound[f.round_number] = fixByRound[f.round_number] || []).push(f);
+                }
+                const liveMatches = {};
+                const liveRound = (rounds.find(r => r.status === "live") || {}).round_number;
+                for (const rNum of Object.keys(fixByRound).sort((a,b) => +a - +b)) {
+                    const label = "Round " + rNum + (Number(rNum) === liveRound ? " (LIVE)" : "");
+                    liveMatches[label] = fixByRound[rNum].map(f => {
+                        const home = scoreByRoundCoach[+rNum]?.[f.home_coach_id];
+                        const away = scoreByRoundCoach[+rNum]?.[f.away_coach_id];
+                        return {
+                            team1: f.home_name, score1: home != null ? home : 0,
+                            team2: f.away_name, score2: away != null ? away : 0,
+                            matchName: f.match_name || "",
+                            live: Number(rNum) === liveRound
+                        };
+                    });
+                }
+                if (Object.keys(liveMatches).length) matches = liveMatches;
+
+                console.log("[sly] live data loaded — coaches:", coaches.length, "rounds:", Object.keys(matches).length);
+            } catch (e) {
+                clearTimeout(timeout);
+                console.warn("[sly] live data load failed, using hardcoded fallback:", e.message);
+            }
+        }
+
+        loadLiveData().finally(() => initAll());
     </script>
 </body>
 </html>
